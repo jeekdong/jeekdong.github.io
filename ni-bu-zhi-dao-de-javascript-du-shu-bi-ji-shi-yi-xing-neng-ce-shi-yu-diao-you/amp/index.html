@@ -17,8 +17,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="《你不知道的JavaScript》读书笔记（十一）----性能测试与调优">
     <meta property="og:description" content="性能测试：可能我们会首先想到以下的例子 var start = (new Date()).getTime();	// 或者`Date.now()` // 做一些操作 var end = (new Date()).getTime(); console.log( &amp;quot;Duration:&amp;quot;, (end - start) ); 这个例子存在一点问题，首先得出的时间具有特殊性，不具有普适性，每次得到的值都是不一样的 环境为王 性能优化要注重基数，比如快20ns这种人根本无法辨别的提升根本无所谓ヾ(ｏ･ω･)ﾉ 因为还有引擎优化的原因，所以你测试的代码要尽可能接近真实的情况 jsPerf：一个用于测试代码在不同平台的性能的网站 完整性(可行性)检查：首先保证两个比较的用例是公平的(其中一个不能做了更多的工作(显然，这样它会更慢)，或者两个比较用例对同样的例子做了不同的事情)，否则这样的比较是没用的，还有一些隐藏的陷阱，如下例   // 用例">
-    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">
-    <meta property="og:image" content="http://localhost:2368/content/images/2017/08/You-Dont-Know-JS-2-2.jpg">
+    <meta property="og:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">
+    <meta property="og:image" content="/content/images/2017/08/You-Dont-Know-JS-2-2.jpg">
     <meta property="article:published_time" content="2017-08-19T12:15:19.000Z">
     <meta property="article:modified_time" content="2017-08-19T12:15:19.000Z">
     <meta property="article:tag" content="JavaScript">
@@ -28,8 +28,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（十一）----性能测试与调优">
     <meta name="twitter:description" content="性能测试：可能我们会首先想到以下的例子 var start = (new Date()).getTime();	// 或者`Date.now()` // 做一些操作 var end = (new Date()).getTime(); console.log( &amp;quot;Duration:&amp;quot;, (end - start) ); 这个例子存在一点问题，首先得出的时间具有特殊性，不具有普适性，每次得到的值都是不一样的 环境为王 性能优化要注重基数，比如快20ns这种人根本无法辨别的提升根本无所谓ヾ(ｏ･ω･)ﾉ 因为还有引擎优化的原因，所以你测试的代码要尽可能接近真实的情况 jsPerf：一个用于测试代码在不同平台的性能的网站 完整性(可行性)检查：首先保证两个比较的用例是公平的(其中一个不能做了更多的工作(显然，这样它会更慢)，或者两个比较用例对同样的例子做了不同的事情)，否则这样的比较是没用的，还有一些隐藏的陷阱，如下例   // 用例">
-    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">
-    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/08/You-Dont-Know-JS-2-2.jpg">
+    <meta name="twitter:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">
+    <meta name="twitter:image" content="/content/images/2017/08/You-Dont-Know-JS-2-2.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="jeekdong">
     <meta name="twitter:label2" content="Filed under">
@@ -44,7 +44,7 @@
         "name": "jeekdong&#x27;s Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "/favicon.ico",
             "width": 60,
             "height": 60
         }
@@ -52,19 +52,19 @@
     "author": {
         "@type": "Person",
         "name": "jeekdong",
-        "url": "http://localhost:2368/author/jeekdong/",
+        "url": "/author/jeekdong/",
         "sameAs": []
     },
     "headline": "《你不知道的JavaScript》读书笔记（十一）----性能测试与调优",
-    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/",
+    "url": "/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/",
     "datePublished": "2017-08-19T12:15:19.000Z",
     "dateModified": "2017-08-19T12:15:19.000Z",
-    "image": "http://localhost:2368/content/images/2017/08/You-Dont-Know-JS-2-2.jpg",
+    "image": "/content/images/2017/08/You-Dont-Know-JS-2-2.jpg",
     "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS",
     "description": "性能测试：可能我们会首先想到以下的例子 var start &#x3D; (new Date()).getTime();\t// 或者&#x60;Date.now()&#x60; // 做一些操作 var end &#x3D; (new Date()).getTime(); console.log( &amp;quot;Duration:&amp;quot;, (end - start) ); 这个例子存在一点问题，首先得出的时间具有特殊性，不具有普适性，每次得到的值都是不一样的 环境为王 性能优化要注重基数，比如快20ns这种人根本无法辨别的提升根本无所谓ヾ(ｏ･ω･)ﾉ 因为还有引擎优化的原因，所以你测试的代码要尽可能接近真实的情况 jsPerf：一个用于测试代码在不同平台的性能的网站 完整性(可行性)检查：首先保证两个比较的用例是公平的(其中一个不能做了更多的工作(显然，这样它会更慢)，或者两个比较用例对同样的例子做了不同的事情)，否则这样的比较是没用的，还有一些隐藏的陷阱，如下例   // 用例",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:2368/"
+        "@id": "/"
     }
 }
     </script>
@@ -100,7 +100,7 @@
                 </section>
             </header>
             <figure class="post-image">
-                <amp-img src="http://localhost:2368/content/images/2017/08/You-Dont-Know-JS-2-2.jpg" width="600" height="400" layout="responsive"></amp-img>
+                <amp-img src="/content/images/2017/08/You-Dont-Know-JS-2-2.jpg" width="600" height="400" layout="responsive"></amp-img>
             </figure>
             <section class="post-content">
 

@@ -17,8 +17,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="JavaScript闭包">
     <meta property="og:description" content="闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。 0x00 什么是闭包 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。-------------MDN 闭包是什么?闭包是Closure，这是静态语言所不具有的一个新特性。但是闭包也不是什么复杂到不可理解的东西，简而言之， 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在。 闭包就是就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈上分配而是在堆上分配 为了便于理解，我们可以简单的将闭包理解为： 闭包：是指有权访问另外一个函数作用域中的变量的函数。 创建闭包的常见方式，就是在一个函数内部创建另一个函数。 我们来看一个例子： function greeting(name) { var text = 'Hello ' + name; // local variable // 每次调用时，产生闭包，并返回内部函数对象给调用者 return function(">
-    <meta property="og:url" content="http://localhost:2368/javascriptbi-bao/">
-    <meta property="og:image" content="http://localhost:2368/content/images/2017/04/javascript-closures-1.jpg">
+    <meta property="og:url" content="/javascriptbi-bao/">
+    <meta property="og:image" content="/content/images/2017/04/javascript-closures-1.jpg">
     <meta property="article:published_time" content="2017-04-13T15:55:35.000Z">
     <meta property="article:modified_time" content="2017-04-13T16:22:15.000Z">
     <meta property="article:tag" content="JavaScript">
@@ -26,8 +26,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="JavaScript闭包">
     <meta name="twitter:description" content="闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。 0x00 什么是闭包 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。-------------MDN 闭包是什么?闭包是Closure，这是静态语言所不具有的一个新特性。但是闭包也不是什么复杂到不可理解的东西，简而言之， 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在。 闭包就是就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈上分配而是在堆上分配 为了便于理解，我们可以简单的将闭包理解为： 闭包：是指有权访问另外一个函数作用域中的变量的函数。 创建闭包的常见方式，就是在一个函数内部创建另一个函数。 我们来看一个例子： function greeting(name) { var text = 'Hello ' + name; // local variable // 每次调用时，产生闭包，并返回内部函数对象给调用者 return function(">
-    <meta name="twitter:url" content="http://localhost:2368/javascriptbi-bao/">
-    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/04/javascript-closures-1.jpg">
+    <meta name="twitter:url" content="/javascriptbi-bao/">
+    <meta name="twitter:image" content="/content/images/2017/04/javascript-closures-1.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="jeekdong">
     <meta name="twitter:label2" content="Filed under">
@@ -42,7 +42,7 @@
         "name": "jeekdong&#x27;s Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "/favicon.ico",
             "width": 60,
             "height": 60
         }
@@ -50,19 +50,19 @@
     "author": {
         "@type": "Person",
         "name": "jeekdong",
-        "url": "http://localhost:2368/author/jeekdong/",
+        "url": "/author/jeekdong/",
         "sameAs": []
     },
     "headline": "JavaScript闭包",
-    "url": "http://localhost:2368/javascriptbi-bao/",
+    "url": "/javascriptbi-bao/",
     "datePublished": "2017-04-13T15:55:35.000Z",
     "dateModified": "2017-04-13T16:22:15.000Z",
-    "image": "http://localhost:2368/content/images/2017/04/javascript-closures-1.jpg",
+    "image": "/content/images/2017/04/javascript-closures-1.jpg",
     "keywords": "JavaScript",
     "description": "闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。 0x00 什么是闭包 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。-------------MDN 闭包是什么?闭包是Closure，这是静态语言所不具有的一个新特性。但是闭包也不是什么复杂到不可理解的东西，简而言之， 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在。 闭包就是就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈上分配而是在堆上分配 为了便于理解，我们可以简单的将闭包理解为： 闭包：是指有权访问另外一个函数作用域中的变量的函数。 创建闭包的常见方式，就是在一个函数内部创建另一个函数。 我们来看一个例子： function greeting(name) { var text &#x3D; &#x27;Hello &#x27; + name; // local variable // 每次调用时，产生闭包，并返回内部函数对象给调用者 return function(",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:2368/"
+        "@id": "/"
     }
 }
     </script>
@@ -98,7 +98,7 @@
                 </section>
             </header>
             <figure class="post-image">
-                <amp-img src="http://localhost:2368/content/images/2017/04/javascript-closures-1.jpg" width="600" height="400" layout="responsive"></amp-img>
+                <amp-img src="/content/images/2017/04/javascript-closures-1.jpg" width="600" height="400" layout="responsive"></amp-img>
             </figure>
             <section class="post-content">
 

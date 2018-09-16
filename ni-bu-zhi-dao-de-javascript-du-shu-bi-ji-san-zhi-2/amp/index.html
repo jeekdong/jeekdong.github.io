@@ -17,8 +17,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="《你不知道的JavaScript》读书笔记（四）----原生函数">
     <meta property="og:description" content='通过构造函数创建出来的是封装了基本类型值的封装对象 所有typeof为&amp;quot;Object&amp;quot;的对象都包含一个内部属性[[class]]，它无法直接访问，可以使用Object.prototype.toString()来查看 当我们使用.length属性操作基本类型值时，JavaScript会自动为基本类型值包装一个封装对象 **注意！**以下代码中a是对象是真值   var a = new Boolean( false );   if (!a) {   	console.log( "Oops" ); // 不会执行   } 可以使用valueOf()来拆封 基本对象封装对象，有时也会发生隐式拆封 当Array()构造函数只带一个数字参数的时候，该参数会被当做数组的length var a = [ , , , ] a.length // 3 而不是 4因为它在末尾多加了一个逗号 构造函数生成的空数组 可以执行join操作，却不能执行map (因为数组中不存在任何单元) Date(...)见P41，创建错误对象主要是为了获得当前运行栈的上下文(.stack属性访问)'>
-    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/">
-    <meta property="og:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-3.jpg">
+    <meta property="og:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/">
+    <meta property="og:image" content="/content/images/2017/06/You-Dont-Know-JS-2-3.jpg">
     <meta property="article:published_time" content="2017-06-23T10:41:29.000Z">
     <meta property="article:modified_time" content="2017-06-23T10:43:32.000Z">
     <meta property="article:tag" content="JavaScript">
@@ -28,8 +28,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（四）----原生函数">
     <meta name="twitter:description" content='通过构造函数创建出来的是封装了基本类型值的封装对象 所有typeof为&amp;quot;Object&amp;quot;的对象都包含一个内部属性[[class]]，它无法直接访问，可以使用Object.prototype.toString()来查看 当我们使用.length属性操作基本类型值时，JavaScript会自动为基本类型值包装一个封装对象 **注意！**以下代码中a是对象是真值   var a = new Boolean( false );   if (!a) {   	console.log( "Oops" ); // 不会执行   } 可以使用valueOf()来拆封 基本对象封装对象，有时也会发生隐式拆封 当Array()构造函数只带一个数字参数的时候，该参数会被当做数组的length var a = [ , , , ] a.length // 3 而不是 4因为它在末尾多加了一个逗号 构造函数生成的空数组 可以执行join操作，却不能执行map (因为数组中不存在任何单元) Date(...)见P41，创建错误对象主要是为了获得当前运行栈的上下文(.stack属性访问)'>
-    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/">
-    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-3.jpg">
+    <meta name="twitter:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/">
+    <meta name="twitter:image" content="/content/images/2017/06/You-Dont-Know-JS-2-3.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="jeekdong">
     <meta name="twitter:label2" content="Filed under">
@@ -44,7 +44,7 @@
         "name": "jeekdong&#x27;s Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "/favicon.ico",
             "width": 60,
             "height": 60
         }
@@ -52,19 +52,19 @@
     "author": {
         "@type": "Person",
         "name": "jeekdong",
-        "url": "http://localhost:2368/author/jeekdong/",
+        "url": "/author/jeekdong/",
         "sameAs": []
     },
     "headline": "《你不知道的JavaScript》读书笔记（四）----原生函数",
-    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/",
+    "url": "/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/",
     "datePublished": "2017-06-23T10:41:29.000Z",
     "dateModified": "2017-06-23T10:43:32.000Z",
-    "image": "http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-3.jpg",
+    "image": "/content/images/2017/06/You-Dont-Know-JS-2-3.jpg",
     "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS",
     "description": "通过构造函数创建出来的是封装了基本类型值的封装对象 所有typeof为&amp;quot;Object&amp;quot;的对象都包含一个内部属性[[class]]，它无法直接访问，可以使用Object.prototype.toString()来查看 当我们使用.length属性操作基本类型值时，JavaScript会自动为基本类型值包装一个封装对象 **注意！**以下代码中a是对象是真值   var a &#x3D; new Boolean( false );   if (!a) {   \tconsole.log( &quot;Oops&quot; ); // 不会执行   } 可以使用valueOf()来拆封 基本对象封装对象，有时也会发生隐式拆封 当Array()构造函数只带一个数字参数的时候，该参数会被当做数组的length var a &#x3D; [ , , , ] a.length // 3 而不是 4因为它在末尾多加了一个逗号 构造函数生成的空数组 可以执行join操作，却不能执行map (因为数组中不存在任何单元) Date(...)见P41，创建错误对象主要是为了获得当前运行栈的上下文(.stack属性访问)",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:2368/"
+        "@id": "/"
     }
 }
     </script>
@@ -100,7 +100,7 @@
                 </section>
             </header>
             <figure class="post-image">
-                <amp-img src="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-3.jpg" width="600" height="400" layout="responsive"></amp-img>
+                <amp-img src="/content/images/2017/06/You-Dont-Know-JS-2-3.jpg" width="600" height="400" layout="responsive"></amp-img>
             </figure>
             <section class="post-content">
 

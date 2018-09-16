@@ -17,8 +17,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="浅谈Promise">
     <meta property="og:description" content="#前言 在Javascript的世界中，所有的代码都是在单线程运行的，这时候就很需要异步操作来解决一些堵塞式程序的运行，早期的时候异步都是使用回调函数来实现的，但是回调的方式有一些致命的缺点： 大脑对于事情的计划往往是线性的，单线程的，但是回调表达异步流程的方式是非线性的，非顺序的，使得推导这样的代码变得很困难 回调会受到控制反转的影响，这种控制转移导致一系列麻烦的信任问题，比如回调被调用的次数是否会超过预期 随着JavaScript越来越成熟，对于异步编程的发展，回调已经不够用了，Promise理论应运而生 #什么是Promise 首先Promise 对象表示一个异步操作的最终完成（或失败）情况 Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers ）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象 一个 Promise有以下几种状态: pending: 初始状态，不是成功或失败状态。 fulfilled: 意味着操作成功完成。 rejected: 意味着操作失败。 #任务 在讨论Promise的使用之前，我们需要先了解一个概念任务 , ES6中有一个建立在事件循环队列之上的概念，“任务队列”。 任务队列它是挂在事件循环队列的每个tick之后的一个队列。在一个事件的tick中，如果发生了一个异步事件，他不会导致一个新事件被添加到事件循环的队列中，">
-    <meta property="og:url" content="http://localhost:2368/qian-tan-promise/">
-    <meta property="og:image" content="http://localhost:2368/content/images/2017/06/promise-1-min.jpg">
+    <meta property="og:url" content="/qian-tan-promise/">
+    <meta property="og:image" content="/content/images/2017/06/promise-1-min.jpg">
     <meta property="article:published_time" content="2017-06-26T14:35:01.000Z">
     <meta property="article:modified_time" content="2017-06-27T11:22:39.000Z">
     <meta property="article:tag" content="JavaScript">
@@ -27,8 +27,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="浅谈Promise">
     <meta name="twitter:description" content="#前言 在Javascript的世界中，所有的代码都是在单线程运行的，这时候就很需要异步操作来解决一些堵塞式程序的运行，早期的时候异步都是使用回调函数来实现的，但是回调的方式有一些致命的缺点： 大脑对于事情的计划往往是线性的，单线程的，但是回调表达异步流程的方式是非线性的，非顺序的，使得推导这样的代码变得很困难 回调会受到控制反转的影响，这种控制转移导致一系列麻烦的信任问题，比如回调被调用的次数是否会超过预期 随着JavaScript越来越成熟，对于异步编程的发展，回调已经不够用了，Promise理论应运而生 #什么是Promise 首先Promise 对象表示一个异步操作的最终完成（或失败）情况 Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers ）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象 一个 Promise有以下几种状态: pending: 初始状态，不是成功或失败状态。 fulfilled: 意味着操作成功完成。 rejected: 意味着操作失败。 #任务 在讨论Promise的使用之前，我们需要先了解一个概念任务 , ES6中有一个建立在事件循环队列之上的概念，“任务队列”。 任务队列它是挂在事件循环队列的每个tick之后的一个队列。在一个事件的tick中，如果发生了一个异步事件，他不会导致一个新事件被添加到事件循环的队列中，">
-    <meta name="twitter:url" content="http://localhost:2368/qian-tan-promise/">
-    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/06/promise-1-min.jpg">
+    <meta name="twitter:url" content="/qian-tan-promise/">
+    <meta name="twitter:image" content="/content/images/2017/06/promise-1-min.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="jeekdong">
     <meta name="twitter:label2" content="Filed under">
@@ -43,7 +43,7 @@
         "name": "jeekdong&#x27;s Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "/favicon.ico",
             "width": 60,
             "height": 60
         }
@@ -51,19 +51,19 @@
     "author": {
         "@type": "Person",
         "name": "jeekdong",
-        "url": "http://localhost:2368/author/jeekdong/",
+        "url": "/author/jeekdong/",
         "sameAs": []
     },
     "headline": "浅谈Promise",
-    "url": "http://localhost:2368/qian-tan-promise/",
+    "url": "/qian-tan-promise/",
     "datePublished": "2017-06-26T14:35:01.000Z",
     "dateModified": "2017-06-27T11:22:39.000Z",
-    "image": "http://localhost:2368/content/images/2017/06/promise-1-min.jpg",
+    "image": "/content/images/2017/06/promise-1-min.jpg",
     "keywords": "JavaScript, ES6",
     "description": "#前言 在Javascript的世界中，所有的代码都是在单线程运行的，这时候就很需要异步操作来解决一些堵塞式程序的运行，早期的时候异步都是使用回调函数来实现的，但是回调的方式有一些致命的缺点： 大脑对于事情的计划往往是线性的，单线程的，但是回调表达异步流程的方式是非线性的，非顺序的，使得推导这样的代码变得很困难 回调会受到控制反转的影响，这种控制转移导致一系列麻烦的信任问题，比如回调被调用的次数是否会超过预期 随着JavaScript越来越成熟，对于异步编程的发展，回调已经不够用了，Promise理论应运而生 #什么是Promise 首先Promise 对象表示一个异步操作的最终完成（或失败）情况 Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers ）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象 一个 Promise有以下几种状态: pending: 初始状态，不是成功或失败状态。 fulfilled: 意味着操作成功完成。 rejected: 意味着操作失败。 #任务 在讨论Promise的使用之前，我们需要先了解一个概念任务 , ES6中有一个建立在事件循环队列之上的概念，“任务队列”。 任务队列它是挂在事件循环队列的每个tick之后的一个队列。在一个事件的tick中，如果发生了一个异步事件，他不会导致一个新事件被添加到事件循环的队列中，",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:2368/"
+        "@id": "/"
     }
 }
     </script>
@@ -99,7 +99,7 @@
                 </section>
             </header>
             <figure class="post-image">
-                <amp-img src="http://localhost:2368/content/images/2017/06/promise-1-min.jpg" width="600" height="400" layout="responsive"></amp-img>
+                <amp-img src="/content/images/2017/06/promise-1-min.jpg" width="600" height="400" layout="responsive"></amp-img>
             </figure>
             <section class="post-content">
 

@@ -17,8 +17,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)">
     <meta property="og:description" content="1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo = &amp;quot;bar&amp;quot;会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是屏蔽属性 如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。 如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，">
-    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
-    <meta property="og:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg">
+    <meta property="og:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
+    <meta property="og:image" content="/content/images/2017/06/You-Dont-Know-JS-2-1.jpg">
     <meta property="article:published_time" content="2017-06-09T14:15:20.000Z">
     <meta property="article:modified_time" content="2017-06-09T14:15:45.000Z">
     <meta property="article:tag" content="JavaScript">
@@ -28,8 +28,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)">
     <meta name="twitter:description" content="1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo = &amp;quot;bar&amp;quot;会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是屏蔽属性 如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。 如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，">
-    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
-    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg">
+    <meta name="twitter:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
+    <meta name="twitter:image" content="/content/images/2017/06/You-Dont-Know-JS-2-1.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="jeekdong">
     <meta name="twitter:label2" content="Filed under">
@@ -44,7 +44,7 @@
         "name": "jeekdong&#x27;s Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "/favicon.ico",
             "width": 60,
             "height": 60
         }
@@ -52,19 +52,19 @@
     "author": {
         "@type": "Person",
         "name": "jeekdong",
-        "url": "http://localhost:2368/author/jeekdong/",
+        "url": "/author/jeekdong/",
         "sameAs": []
     },
     "headline": "《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)",
-    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/",
+    "url": "/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/",
     "datePublished": "2017-06-09T14:15:20.000Z",
     "dateModified": "2017-06-09T14:15:45.000Z",
-    "image": "http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg",
+    "image": "/content/images/2017/06/You-Dont-Know-JS-2-1.jpg",
     "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS",
     "description": "1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo &#x3D; &amp;quot;bar&amp;quot;会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是屏蔽属性 如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。 如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "http://localhost:2368/"
+        "@id": "/"
     }
 }
     </script>
@@ -100,7 +100,7 @@
                 </section>
             </header>
             <figure class="post-image">
-                <amp-img src="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg" width="600" height="400" layout="responsive"></amp-img>
+                <amp-img src="/content/images/2017/06/You-Dont-Know-JS-2-1.jpg" width="600" height="400" layout="responsive"></amp-img>
             </figure>
             <section class="post-content">
 
