@@ -1,0 +1,449 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>《你不知道的JavaScript》读书笔记（三）----值</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:2368/assets/built/screen.css?v=bb2cc0bddc">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="《你不知道的JavaScript》读书笔记（三）----值">
+    <meta property="og:description" content="使用delete运算符可以将单元从数组中删除，但是不改变length属性的值 数组也是对象的子类型，所以也可以包含字符串键值和属性(但不计算在数组长度内) 类数组----&amp;gt;数组：使用slice()和Array.from() JavaScript字符串不可变，数组可变。许多数组函数用来处理字符串很方便，可以通过&amp;quot;借用&amp;quot;数组的非变更方法来处理字符串， a.join;			// undefined a.map;			// undefined var c = Array.prototype.join.call( a, &amp;quot;-&amp;quot; ); var d = Array.prototype.map.call( a, function(v){ return v.toUpperCase() + &amp;quot;.&amp;quot;; } ).join(">
+    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-2.jpg">
+    <meta property="article:published_time" content="2017-06-22T10:49:13.000Z">
+    <meta property="article:modified_time" content="2017-06-22T10:50:31.000Z">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="读书笔记">
+    <meta property="article:tag" content="You-Dont-Know-JS">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（三）----值">
+    <meta name="twitter:description" content="使用delete运算符可以将单元从数组中删除，但是不改变length属性的值 数组也是对象的子类型，所以也可以包含字符串键值和属性(但不计算在数组长度内) 类数组----&amp;gt;数组：使用slice()和Array.from() JavaScript字符串不可变，数组可变。许多数组函数用来处理字符串很方便，可以通过&amp;quot;借用&amp;quot;数组的非变更方法来处理字符串， a.join;			// undefined a.map;			// undefined var c = Array.prototype.join.call( a, &amp;quot;-&amp;quot; ); var d = Array.prototype.map.call( a, function(v){ return v.toUpperCase() + &amp;quot;.&amp;quot;; } ).join(">
+    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-2.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript, 读书笔记, You-Dont-Know-JS">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "《你不知道的JavaScript》读书笔记（三）----值",
+    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/",
+    "datePublished": "2017-06-22T10:49:13.000Z",
+    "dateModified": "2017-06-22T10:50:31.000Z",
+    "image": "http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-2.jpg",
+    "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS",
+    "description": "使用delete运算符可以将单元从数组中删除，但是不改变length属性的值 数组也是对象的子类型，所以也可以包含字符串键值和属性(但不计算在数组长度内) 类数组----&amp;gt;数组：使用slice()和Array.from() JavaScript字符串不可变，数组可变。许多数组函数用来处理字符串很方便，可以通过&amp;quot;借用&amp;quot;数组的非变更方法来处理字符串， a.join;\t\t\t// undefined a.map;\t\t\t// undefined var c &#x3D; Array.prototype.join.call( a, &amp;quot;-&amp;quot; ); var d &#x3D; Array.prototype.map.call( a, function(v){ return v.toUpperCase() + &amp;quot;.&amp;quot;; } ).join(",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="http://localhost:2368/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "db19c8130b97"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">jeekdong's Blog</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+    <li class="nav-javascript" role="menuitem"><a href="../tag/javascript/">JavaScript</a></li>
+    <li class="nav-sublime" role="menuitem"><a href="../tag/sublime/">sublime</a></li>
+    <li class="nav-ubuntu" role="menuitem"><a href="../tag/ubuntu/">ubuntu</a></li>
+    <li class="nav-regex" role="menuitem"><a href="../tag/regex/">regex</a></li>
+    <li class="nav-css3" role="menuitem"><a href="../tag/css3/">CSS3</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/http://localhost:2368/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-06-22">22 June 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/javascript/">JavaScript</a>
+                </section>
+                <h1 class="post-full-title">《你不知道的JavaScript》读书笔记（三）----值</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(/content/images/2017/06/You-Dont-Know-JS-2-2.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <div class="kg-card-markdown"><ul>
+<li>
+<p>使用delete运算符可以将单元从数组中删除，但是不改变length属性的值</p>
+</li>
+<li>
+<p>数组也是对象的子类型，所以也可以包含字符串键值和属性(但不计算在数组长度内)</p>
+</li>
+<li>
+<p>类数组----&gt;数组：使用slice()和Array.from()</p>
+</li>
+<li>
+<p>JavaScript字符串不可变，数组可变。许多数组函数用来处理字符串很方便，可以通过"借用"数组的非变更方法来处理字符串，</p>
+<pre><code class="language-javascript">
+a.join;			// undefined
+a.map;			// undefined
+<p>var c = Array.prototype.join.call( a, "-" );<br>
+var d = Array.prototype.map.call( a, function(v){<br>
+return v.toUpperCase() + ".";<br>
+} ).join( "" );</p>
+<p>c;				// "f-o-o"<br>
+d;				// "F.O.O."<br>
+</p></code></pre>
+</li>
+<li>
+<p>split()：字符串---&gt;数组。join()：数组----&gt;字符串。</p>
+</li>
+<li>
+<p>JavaScript无真正意义上的整数</p>
+</li>
+<li>
+<p><code>42.toFixed(3) //无效</code> 因为 <em>.</em> 会被视为小数点而不是属性运算符；应当使用<code>42..toFixed(3)</code>或者<code>(42).toFixed(3)</code></p>
+</li>
+<li>
+<p><em><strong>0x</strong></em>(十六进制) ,  <em><strong>0/0o</strong></em>(ES6的新表达方式)  (八进制) , <em><strong>0b</strong></em>(二进制)</p>
+</li>
+<li>
+<p>通过设置“机器精度”(存储在Number.EPSILON)可以用来比较 0.1+0.2 与0.3是否相等</p>
+</li>
+<li>
+<p>null 与 undefined 的区别：</p>
+<ul>
+<li>null指空值 / 目前没有值   null不是标识符，不可以当作变量来使用和赋值</li>
+<li>undefiend 指从未赋值    undefined是标识符，可以赋值</li>
+</ul>
+</li>
+<li>
+<p>void运算符可以使表达式不返回值(设为undifined)</p>
+</li>
+<li>
+<p>如果isNaN函数的参数不是Number类型,<strong>isNaN()会首先尝试将这个参数转换为数值</strong>，然后才会对转换后的结果是否是NaN进行判断。可以把isNaN看做：</p>
+</li>
+</ul>
+  <pre><code class="language-javascript">
+  isNaN = function(value) {
+      Number.isNaN(Number(value));
+  }
+  </code></pre>
+<p>在JavaScript中，<code>isNaN(x)==true</code>等价于<code>x - 0 = NaN</code>,相当于它是一个不可运算数，可以利用这个特殊行为来检测函数的参数是可运算的</p>
+<ul>
+<li>
+<p>在JavaScript中 <code>0 === -0 //true</code>，所以可以使用Object.is()来判断(也可以判断两个NaN是否相等)，<code>Object.is(0,-0) //false</code></p>
+</li>
+<li>
+<p>简单值(6种),总是通过值复制的方式来赋值/传递，复合值------对象，则总是通过引用复制的方式来赋值/传递，</p>
+</li>
+<li>
+<p>在JavaScript中，<strong>如果参数不声明为引用的话，参数值总是通过值复制的方式传递，即便对复杂的对象值也是如此</strong>（意味着我们不能通过引用x来改变a的指向，只能更改a和x共同指向的值）。也可以说是，在JavaScript中的<strong>引用和其他寓言中的引用/指针不同，他们不能指向别的变量/引用，只能指向值</strong></p>
+<p>​</p>
+</li>
+</ul>
+</div>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/jeekdong/">jeekdong</a></h4>
+            <p>Read <a href="../author/jeekdong/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/jeekdong/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(/content/images/2017/06/pexels-photo-90807-min.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— jeekdong's Blog —</small>
+                        <h3 class="read-next-card-header-title"><a href="../tag/javascript/">JavaScript</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">《你不知道的JavaScript》读书笔记（十一）----性能测试与调优</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-cheng-xu-xing-neng/">《你不知道的JavaScript》读书笔记（十）----程序性能</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-jiu-sheng-cheng-qi/">《你不知道的JavaScript》读书笔记（九）----生成器</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/javascript/">See all 16 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+        <a class="post-card-image-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/06/You-Dont-Know-JS-2-3.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi-2/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">《你不知道的JavaScript》读书笔记（四）----原生函数</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>通过构造函数创建出来的是封装了基本类型值的封装对象 所有typeof为"Object"的对象都包含一个内部属性[[class]]，它无法直接访问，可以使用Object.prototype.toString()来查看 当我们使用.length属性操作基本类型值时，JavaScript会自动为基本类型值包装一个封装对象 **注意！**以下代码中a是对象是真值   var a = new Boolean( false );   if (!a) {   	console.log( "Oops" ); // 不会执行   } 可以使用valueOf()来拆封 基本对象封装对象，有时也会发生隐式拆封 当Array(</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">1 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+        <a class="post-card-image-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/06/You-Dont-Know-JS-2-1.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo = "bar"会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">3 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>jeekdong's Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">《你不知道的JavaScript》读书笔记（三）----值</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89----%E5%80%BC&amp;url=http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">jeekdong's Blog</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://localhost:2368/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <div style="text-align:center;font-size:1.2rem;">
+   <a href="http://www.miitbeian.gov.cn/">闽ICP备17015123号</a>   
+</div>
+
+</body>

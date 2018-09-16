@@ -1,0 +1,467 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:2368/assets/built/screen.css?v=bb2cc0bddc">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)">
+    <meta property="og:description" content="1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo = &amp;quot;bar&amp;quot;会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是屏蔽属性 如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。 如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，">
+    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg">
+    <meta property="article:published_time" content="2017-06-09T14:15:20.000Z">
+    <meta property="article:modified_time" content="2017-06-09T14:15:45.000Z">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="读书笔记">
+    <meta property="article:tag" content="You-Dont-Know-JS">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)">
+    <meta name="twitter:description" content="1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo = &amp;quot;bar&amp;quot;会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是屏蔽属性 如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。 如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，">
+    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript, 读书笔记, You-Dont-Know-JS">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)",
+    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/",
+    "datePublished": "2017-06-09T14:15:20.000Z",
+    "dateModified": "2017-06-09T14:15:45.000Z",
+    "image": "http://localhost:2368/content/images/2017/06/You-Dont-Know-JS-2-1.jpg",
+    "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS",
+    "description": "1.对象原型 属性访问时执行[[Get]]操作： 对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回 如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链 属性访问时的[[Put]]操作（存在这个属性）： 属性是否是访问描述符？如果是并且存在setter就调用setter 属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败 如果都不是，就将该值设置为属性的值 在原型链上层时myObject.foo &#x3D; &amp;quot;bar&amp;quot;会出现的三种情况 如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是屏蔽属性 如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。 如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="http://localhost:2368/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "db19c8130b97"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">jeekdong's Blog</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+    <li class="nav-javascript" role="menuitem"><a href="../tag/javascript/">JavaScript</a></li>
+    <li class="nav-sublime" role="menuitem"><a href="../tag/sublime/">sublime</a></li>
+    <li class="nav-ubuntu" role="menuitem"><a href="../tag/ubuntu/">ubuntu</a></li>
+    <li class="nav-regex" role="menuitem"><a href="../tag/regex/">regex</a></li>
+    <li class="nav-css3" role="menuitem"><a href="../tag/css3/">CSS3</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/http://localhost:2368/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-06-09">9 June 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/javascript/">JavaScript</a>
+                </section>
+                <h1 class="post-full-title">《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(/content/images/2017/06/You-Dont-Know-JS-2-1.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <div class="kg-card-markdown"><h2 id="1">1.对象原型</h2>
+<ul>
+<li>
+<p>属性访问时执行[[Get]]操作：</p>
+<ul>
+<li>对象默认内置的[[Get]]操作首先在对象中查找是否有名称相同的的属性，如果找到就返回</li>
+<li>如果没有找到名称相同的属性，会去遍历可能存在的[[Prototype]]链</li>
+</ul>
+</li>
+<li>
+<p>属性访问时的[[Put]]操作（存在这个属性）：</p>
+<ul>
+<li>属性是否是访问描述符？如果是并且存在setter就调用setter</li>
+<li>属性的数据描述符中writable是否是false？如果是，非严格模式下会静默失败</li>
+<li>如果都不是，就将该值设置为属性的值</li>
+</ul>
+</li>
+<li>
+<p>在原型链上层时<code>myObject.foo = "bar"</code>会出现的三种情况</p>
+<ol>
+<li>
+<p>如果在[[prototype]]链上层存在名为foo的普通数据访问属性并且没有被标记为只读(writable：flase)，那就会直接在myObject上添加一个名为foo的新属性，他是<strong>屏蔽属性</strong></p>
+</li>
+<li>
+<p>如果在[[prototype]]链上层存在foo，但是它被标记为只读(writable: true)，那么无法修改已有属性或者在myObject上创建屏蔽属性。一般这条语句会被忽略。</p>
+</li>
+<li>
+<p>如果在[[prototype]]链上层存在foo并且它是一个setter，那就一定会调用这个setter。foo不会被添加到myObject，也不会重新定义这个setter。</p>
+<blockquote>
+<p>如果希望在第二和第三种情况下也屏蔽foo，那就不能使用 = 赋值符，而是使用Object.defineProperty(...)来向myObject中添加foo</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>
+<p>注意隐式屏蔽（<code>myObject.a++</code>），所以修改委托属性是一定要小心。</p>
+</li>
+<li>
+<p>new  Foo()只是间接关联了对象，这个关联只是一个意外的副作用。</p>
+</li>
+<li>
+<p>（原型）继承最好采用的方法是Object.create()或者用Object.setPrototypeOf()</p>
+</li>
+<li>
+<p>检查"类"的关系：</p>
+<ul>
+<li><code>a instanceof Foo</code>左边是一个普通的对象，右边是一个函数。它回答的问题是：<strong>在a的整条[[Prototype]]链中是否有指向Foo.prototype的对象</strong></li>
+<li><code>Foo.prototype.isPrototypeOf( a )</code>左右两边都是对象，它回答的问题是：<strong>在a的整条[[Prototype]]链中是否出现过Foo.prototype</strong></li>
+<li>ES5中可以直接获取一个对象的[[Prototype]]链   <code>Object.getPrototypeOf( a )</code></li>
+</ul>
+</li>
+<li>
+<p>Object.create()是通过Prototype来连接的</p>
+</li>
+</ul>
+<h2 id="2type">2.类型(type)</h2>
+<ul>
+<li>
+<p>JavaScript有7种内置类型：ES6新增了symbol</p>
+</li>
+<li>
+<p><strong>null</strong>:：typeof 对<strong>null</strong>的处理有点问题：<code>typeof null === "object" //true</code> ；<strong>null</strong>是基本类型中唯一一个“假值“</p>
+</li>
+<li>
+<p>function是对象子类型，函数对象的length属性是其声明的参数的个数</p>
+<pre><code class="language-javascript">
+function a(b,c){...};
+a.length;    //2
+</code></pre>
+</li>
+<li>
+<p>JavaScript中的<strong>变量是没有类型</strong>的，只有值才有，typeof 运算符总会返回字符串，且typeof 未声明的变量也是undefined（所以要注意区分），这是因为typeof有一个特殊的安全防范机制</p>
+</li>
+<li>
+<p>typeof 的安全防范机制可用来检测变量是否定义过，也可以用<code>window.variable</code>来检测，还有一种依赖注入设计模式。</p>
+<pre><code class="language-javascript">
+// 这样会抛出错误
+if (DEBUG) {
+	console.log( "Debugging is starting" );
+}
+<p>// 这样是安全的<br>
+if (typeof DEBUG !== "undefined") {<br>
+console.log( "Debugging is starting" );<br>
+}<br>
+</p></code></pre>
+<p>​</p>
+</li>
+</ul>
+</div>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/jeekdong/">jeekdong</a></h4>
+            <p>Read <a href="../author/jeekdong/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/jeekdong/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(/content/images/2017/06/pexels-photo-90807-min.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— jeekdong's Blog —</small>
+                        <h3 class="read-next-card-header-title"><a href="../tag/javascript/">JavaScript</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">《你不知道的JavaScript》读书笔记（十一）----性能测试与调优</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-cheng-xu-xing-neng/">《你不知道的JavaScript》读书笔记（十）----程序性能</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-jiu-sheng-cheng-qi/">《你不知道的JavaScript》读书笔记（九）----生成器</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/javascript/">See all 16 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+        <a class="post-card-image-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/06/You-Dont-Know-JS-2-2.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-san-zhi/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">《你不知道的JavaScript》读书笔记（三）----值</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>使用delete运算符可以将单元从数组中删除，但是不改变length属性的值 数组也是对象的子类型，所以也可以包含字符串键值和属性(但不计算在数组长度内) 类数组----&gt;数组：使用slice()和Array.from() JavaScript字符串不可变，数组可变。许多数组函数用来处理字符串很方便，可以通过"借用"数组的非变更方法来处理字符串， a.join;			// undefined a.map;			// undefined var c = Array.prototype.join.call( a, "</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">3 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-javascript tag-you-dont-know-js tag-du-shu-bi-ji">
+        <a class="post-card-image-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-yi-zuo-yong-yu-yu-bi-bao-thishe-dui-xiang-yuan-xing/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/06/You-Dont-Know-JS-1-m.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-yi-zuo-yong-yu-yu-bi-bao-thishe-dui-xiang-yuan-xing/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">《你不知道的JavaScript》读书笔记（一）----作用域与闭包&amp;this和对象</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>最近在读《你不知道的JavaScript》这本书，感觉讲的十分不错，对于理解JS语言的思维方式很有帮助，这里特别开一个坑，这个系列的文章大致就是记录我在看书时的一些笔记（刚开始写的比较乱，见谅），嗯，不定期更新 ( • ̀ω•́ )✧ 以下是第一期内容：作用域与闭包&amp;this和对象原型 1.作用域与闭包 为什么不加 var a 可以定义一个全局变量，因为他在别的作用域下找不到 var，就继续向上找 a ,最后到了全局作用域，不找了！！直接自己建立一个a， JavaScript中声明会提升； 无论通过何种手段将内部函数传递到现在的词法作用域以外，它都会持有对原始定义作用域的引用，无论在何处执行这个函数都会使用闭包</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">4 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>jeekdong's Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">《你不知道的JavaScript》读书笔记（二）----对象原型&amp;类型(type)</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89----%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%9E%8B%26%E7%B1%BB%E5%9E%8B(type)&amp;url=http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-er-dui-xiang-yuan-xing-lei-xing-type/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">jeekdong's Blog</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://localhost:2368/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <div style="text-align:center;font-size:1.2rem;">
+   <a href="http://www.miitbeian.gov.cn/">闽ICP备17015123号</a>   
+</div>
+
+</body>

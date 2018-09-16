@@ -1,0 +1,506 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>《你不知道的JavaScript》读书笔记（五）----强制类型转换</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:2368/assets/built/screen.css?v=bb2cc0bddc">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="《你不知道的JavaScript》读书笔记（五）----强制类型转换">
+    <meta property="og:description" content="ToString操作 null---&amp;gt;&amp;quot;null&amp;quot;,undefined---&amp;gt;&amp;quot;undefined&amp;quot;,true---&amp;gt;&amp;quot;true&amp;quot; 普通对象-----&amp;gt;返回内部[[class]]值(&amp;quot;[object object]&amp;quot;) 数组----&amp;gt;&amp;quot;1,2,3&amp;quot; JSON.stringify(...)：字符串，数字，布尔值和null规则与ToString操作相同 ToNumber操作                      Argument Type         Result                                 Undefined                    NaN                                Null                    +0                                Boolean         The result is           1">
+    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-wu-qiang-zhi-lei-xing-zhuan-huan/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2.jpg">
+    <meta property="article:published_time" content="2017-07-04T15:23:51.000Z">
+    <meta property="article:modified_time" content="2017-07-04T15:25:41.000Z">
+    <meta property="article:tag" content="读书笔记">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="You-Dont-Know-JS">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（五）----强制类型转换">
+    <meta name="twitter:description" content="ToString操作 null---&amp;gt;&amp;quot;null&amp;quot;,undefined---&amp;gt;&amp;quot;undefined&amp;quot;,true---&amp;gt;&amp;quot;true&amp;quot; 普通对象-----&amp;gt;返回内部[[class]]值(&amp;quot;[object object]&amp;quot;) 数组----&amp;gt;&amp;quot;1,2,3&amp;quot; JSON.stringify(...)：字符串，数字，布尔值和null规则与ToString操作相同 ToNumber操作                      Argument Type         Result                                 Undefined                    NaN                                Null                    +0                                Boolean         The result is           1">
+    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-wu-qiang-zhi-lei-xing-zhuan-huan/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="读书笔记, JavaScript, You-Dont-Know-JS">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "《你不知道的JavaScript》读书笔记（五）----强制类型转换",
+    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-wu-qiang-zhi-lei-xing-zhuan-huan/",
+    "datePublished": "2017-07-04T15:23:51.000Z",
+    "dateModified": "2017-07-04T15:25:41.000Z",
+    "image": "http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2.jpg",
+    "keywords": "读书笔记, JavaScript, You-Dont-Know-JS",
+    "description": "ToString操作 null---&amp;gt;&amp;quot;null&amp;quot;,undefined---&amp;gt;&amp;quot;undefined&amp;quot;,true---&amp;gt;&amp;quot;true&amp;quot; 普通对象-----&amp;gt;返回内部[[class]]值(&amp;quot;[object object]&amp;quot;) 数组----&amp;gt;&amp;quot;1,2,3&amp;quot; JSON.stringify(...)：字符串，数字，布尔值和null规则与ToString操作相同 ToNumber操作                      Argument Type         Result                                 Undefined                    NaN                                Null                    +0                                Boolean         The result is           1",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="http://localhost:2368/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "db19c8130b97"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-du-shu-bi-ji tag-javascript tag-you-dont-know-js">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">jeekdong's Blog</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+    <li class="nav-javascript" role="menuitem"><a href="../tag/javascript/">JavaScript</a></li>
+    <li class="nav-sublime" role="menuitem"><a href="../tag/sublime/">sublime</a></li>
+    <li class="nav-ubuntu" role="menuitem"><a href="../tag/ubuntu/">ubuntu</a></li>
+    <li class="nav-regex" role="menuitem"><a href="../tag/regex/">regex</a></li>
+    <li class="nav-css3" role="menuitem"><a href="../tag/css3/">CSS3</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/http://localhost:2368/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-du-shu-bi-ji tag-javascript tag-you-dont-know-js ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-07-04">4 July 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/du-shu-bi-ji/">读书笔记</a>
+                </section>
+                <h1 class="post-full-title">《你不知道的JavaScript》读书笔记（五）----强制类型转换</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(/content/images/2017/07/You-Dont-Know-JS-2.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <div class="kg-card-markdown"><ul>
+<li>
+<p><strong>ToString操作</strong></p>
+<ul>
+<li>null---&gt;"null",undefined---&gt;"undefined",true---&gt;"true"</li>
+<li>普通对象-----&gt;返回内部[[class]]值("[object object]")</li>
+<li>数组----&gt;"1,2,3"</li>
+<li>JSON.stringify(...)：字符串，数字，布尔值和null规则与ToString操作相同</li>
+</ul>
+</li>
+<li>
+<p><strong>ToNumber操作</strong></p>
+ <table class="table table-striped table-celled" border="1">
+   <thead>
+      <tr>
+        <th style="text-align:left">Argument Type</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align:left">Undefined</td>
+        <td>
+          <strong>NaN</strong>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align:left">Null</td>
+        <td>
+          <strong>+0</strong>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align:left">Boolean</td>
+        <td>The result is
+          <strong>1</strong> if the argument is
+          <strong>true</strong>.The result is
+          <strong>+0</strong> if the argument is false.</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">Number</td>
+        <td>The result equals the input argument (no conversion).</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">String</td>
+        <td>In effect evaluates Number(
+          <em>string</em>)“abc” -&gt; NaN“123” -&gt; 123,
+          <code>空字符串，" ", "\n"</code>会被转换为0</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">Object</td>
+        <td>Apply the following steps:1. Let
+          <em>primValue</em> be ToPrimitive(
+          <em>input argument</em>, hint Number).2. Return ToNumber(
+          <em>primValue</em>).
+          <strong>有valueOf()就执行（数组的valueOf()会返回本身），否则执行toString(),否则报错</strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</li>
+
+<li>
+<p><strong>ToBoolean操作</strong></p>
+<ul>
+<li>假值表：undefined,null,false,+0,-0,NaN,""         <strong>假值列表以外的值都是真值</strong></li>
+</ul>
+</li>
+<li>
+<p>一元运算符"+"可以将日期对象转换为数字</p>
+</li>
+<li>
+<p>~按位非，返回2的补码(大致相当于-(42+1))  P59</p>
+</li>
+<li>
+<p>parseInt()解析字符串中的数字与字符串强制类型转换有区别，<strong>解析允许字符串有非数字字符，从左至右。而转换不允许，否则会失败返回NaN</strong></p>
+</li>
+<li>
+<p>显示转换为布尔值：<em>Boolean(...)</em>，<em>!!a</em></p>
+</li>
+<li>
+<p><strong>字符串与数字之间隐式强制转换：</strong>+运算符可用于字符串拼接和数字加法；<code>var a = [1,2]; var b = [3,4]; a+b;//"1,23,4"</code> 它会对数组执行ToPrimitive操作，<code>a+""</code>这样的隐式操作与String有一点区别，前者valueOf----&gt;ToString，后者直接ToString</p>
+</li>
+<li>
+<p><strong>布尔值到数字的隐式强制转换：</strong> +运算符 <code>var a = true +true //2</code></p>
+</li>
+<li>
+<p><strong>隐式强制类型转换为布尔值：</strong></p>
+<ul>
+<li>if(...)语句中的判断表达式</li>
+<li>for(...)语句中的判断表达式</li>
+<li>while，do...while 中的判断表达式</li>
+<li>? : 中的条件判断表达式</li>
+<li>逻辑运算符||和&amp;&amp;左边的操作数(作为条件判断表达式)</li>
+</ul>
+</li>
+<li>
+<p>||和&amp;&amp;，可以叫为“选择器运算符”，<strong>因为在JavaScript中它们返回的并不是布尔值，而是两个操作数中的一个(且仅一个)</strong></p>
+<ul>
+<li>||会首先对第一个条件判断，非布尔值执行ToBoolean，true返回第一个操作数，false返回第二个操作数</li>
+<li>&amp;&amp;会首先对第一个条件判断，非布尔值执行ToBoolean，true返回第二个操作数，true返回第一个操作数</li>
+</ul>
+</li>
+<li>
+<p>ES6允许从符号到字符串的显式强制类型转换，然而隐式强制类型转换会产生错误</p>
+</li>
+<li>
+<p><strong>相等</strong> (｡•́︿•̀｡)：</p>
+<ul>
+<li>String == Boolean，需要两个操作数同时转为<strong>Number</strong>。</li>
+<li>JavaScript中对象的比较是<strong>引用的比较</strong>，而不是值的比较</li>
+<li><strong>JS中奇怪的地方：</strong>
+<ol>
+<li>对象在等于操作符中会执行valueOf()方法，可以在此返回其他数字，可产生与预想不一样的结果</li>
+<li><code>if(a == 2 &amp;&amp; a == 3){ ... }</code>看起来这个式子不可能执行，因为a不会同时等于2和3.但"同时"一词并不准确，因为<code>a == 2</code>在<code>a == 3</code>之前执行。如果让a.valueOf()每次调用产生副作用就可以实现。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>不等比较：</p>
+<ul>
+<li>a&lt;=b 会被处理为 a&gt;b ,然后将结果反转</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+</div>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/jeekdong/">jeekdong</a></h4>
+            <p>Read <a href="../author/jeekdong/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/jeekdong/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(/content/images/2017/06/pexels-photo-90807-min.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— jeekdong's Blog —</small>
+                        <h3 class="read-next-card-header-title"><a href="../tag/du-shu-bi-ji/">读书笔记</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">《你不知道的JavaScript》读书笔记（十一）----性能测试与调优</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-cheng-xu-xing-neng/">《你不知道的JavaScript》读书笔记（十）----程序性能</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-jiu-sheng-cheng-qi/">《你不知道的JavaScript》读书笔记（九）----生成器</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/du-shu-bi-ji/">See all 10 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+        <a class="post-card-image-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-liu-yu-fa/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/07/You-Dont-Know-JS-2-1.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-liu-yu-fa/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">《你不知道的JavaScript》读书笔记（六）----语法</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>语句的结果值： 赋值表达式的结果是赋值的值 代码块的结果值是其最后一个语句/表达式的结果 但是语法并不允许我们获得语句的结果值并将其赋值给另一个变量，不过eval()可以获得结果值，ES7也有一个提案“do表达式”，会返回其中最后一个语句的结果值 javascript var a = b = 42; //这个语句并不会对b进行声明 上下文规则： 代码块:第一行的{}被当做空对象，第二行的{}被当做代码块     [] + {}     // "[object Object]"     {} + []     // 0  对象解构：从ES6开始，{...}可以用于解构赋值     function getData() {     	// ..     	return {     		a: 42,</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-javascript tag-es6">
+        <a class="post-card-image-link" href="../qian-tan-promise/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/06/promise-1-min.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../qian-tan-promise/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">浅谈Promise</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>#前言 在Javascript的世界中，所有的代码都是在单线程运行的，这时候就很需要异步操作来解决一些堵塞式程序的运行，早期的时候异步都是使用回调函数来实现的，但是回调的方式有一些致命的缺点： 大脑对于事情的计划往往是线性的，单线程的，但是回调表达异步流程的方式是非线性的，非顺序的，使得推导这样的代码变得很困难 回调会受到控制反转的影响，这种控制转移导致一系列麻烦的信任问题，比如回调被调用的次数是否会超过预期 随着JavaScript越来越成熟，对于异步编程的发展，回调已经不够用了，Promise理论应运而生 #什么是Promise 首先Promise 对象表示一个异步操作的最终完成（或失败）情况 Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers ）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象 一个</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">8 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>jeekdong's Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">《你不知道的JavaScript》读书笔记（五）----强制类型转换</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89----%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2&amp;url=http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-wu-qiang-zhi-lei-xing-zhuan-huan/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-wu-qiang-zhi-lei-xing-zhuan-huan/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">jeekdong's Blog</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://localhost:2368/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <div style="text-align:center;font-size:1.2rem;">
+   <a href="http://www.miitbeian.gov.cn/">闽ICP备17015123号</a>   
+</div>
+
+</body>

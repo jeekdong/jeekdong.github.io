@@ -1,0 +1,237 @@
+
+<head>
+    <meta charset="utf-8">
+
+    <title>《你不知道的JavaScript》读书笔记（八）----Promise</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="../../favicon.ico">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="《你不知道的JavaScript》读书笔记（八）----Promise">
+    <meta property="og:description" content="一旦Promise决议，它就永远保持在这个状态。此时它就成为了不变值 两种Promise的实现方式：   function bar(fooPromise) {   	// 侦听foo(...)的完成   	fooPromise.then(   		function(){   			// `foo(..)` 已经完成，所以开始做 `bar(..)`的任务   		},   		function(){   			// 啊,  `foo(..)`出错了   		}   	);   }      function bar() {   	// `foo(..)` 肯定已经完成了，所以执行 `bar(..)`的任务   } function oopsBar() { // 啊,  foo(..)出错了，所以bar(..) 没有执行 } // 对于 baz() 和 oopsBaz()同理 var p = foo( 42 ); p.then( bar, oopsBar ); p.then(">
+    <meta property="og:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-ba-promise/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2-3.jpg">
+    <meta property="article:published_time" content="2017-07-29T14:46:15.000Z">
+    <meta property="article:modified_time" content="2017-07-29T14:47:29.000Z">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="读书笔记">
+    <meta property="article:tag" content="You-Dont-Know-JS">
+    <meta property="article:tag" content="Promise">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（八）----Promise">
+    <meta name="twitter:description" content="一旦Promise决议，它就永远保持在这个状态。此时它就成为了不变值 两种Promise的实现方式：   function bar(fooPromise) {   	// 侦听foo(...)的完成   	fooPromise.then(   		function(){   			// `foo(..)` 已经完成，所以开始做 `bar(..)`的任务   		},   		function(){   			// 啊,  `foo(..)`出错了   		}   	);   }      function bar() {   	// `foo(..)` 肯定已经完成了，所以执行 `bar(..)`的任务   } function oopsBar() { // 啊,  foo(..)出错了，所以bar(..) 没有执行 } // 对于 baz() 和 oopsBaz()同理 var p = foo( 42 ); p.then( bar, oopsBar ); p.then(">
+    <meta name="twitter:url" content="http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-ba-promise/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2-3.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript, 读书笔记, You-Dont-Know-JS, Promise">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "《你不知道的JavaScript》读书笔记（八）----Promise",
+    "url": "http://localhost:2368/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-ba-promise/",
+    "datePublished": "2017-07-29T14:46:15.000Z",
+    "dateModified": "2017-07-29T14:47:29.000Z",
+    "image": "http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2-3.jpg",
+    "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS, Promise",
+    "description": "一旦Promise决议，它就永远保持在这个状态。此时它就成为了不变值 两种Promise的实现方式：   function bar(fooPromise) {   \t// 侦听foo(...)的完成   \tfooPromise.then(   \t\tfunction(){   \t\t\t// &#x60;foo(..)&#x60; 已经完成，所以开始做 &#x60;bar(..)&#x60;的任务   \t\t},   \t\tfunction(){   \t\t\t// 啊,  &#x60;foo(..)&#x60;出错了   \t\t}   \t);   }      function bar() {   \t// &#x60;foo(..)&#x60; 肯定已经完成了，所以执行 &#x60;bar(..)&#x60;的任务   } function oopsBar() { // 啊,  foo(..)出错了，所以bar(..) 没有执行 } // 对于 baz() 和 oopsBaz()同理 var p &#x3D; foo( 42 ); p.then( bar, oopsBar ); p.then(",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../../rss/index.html">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,600,400">
+    <style amp-custom>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{margin:0.67em 0;font-size:2em}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{position:relative;vertical-align:baseline;font-size:75%;line-height:0}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}amp-img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;color:inherit;font:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;border:1px solid #c0c0c0}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}html{max-height:100%;height:100%;font-size:62.5%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)}body{max-height:100%;height:100%;color:#3a4145;background:#f4f8fb;letter-spacing:0.01rem;font-family:"Merriweather", serif;font-size:1.8rem;line-height:1.75em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"kern" 1;-moz-font-feature-settings:"kern" 1;-o-font-feature-settings:"kern" 1}::-moz-selection{background:#d6edff}::selection{background:#d6edff}h1,h2,h3,h4,h5,h6{margin:0 0 0.3em 0;color:#2e2e2e;font-family:"Open Sans", sans-serif;line-height:1.15em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-moz-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-o-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1}h1{text-indent:-2px;letter-spacing:-1px;font-size:2.6rem}h2{letter-spacing:0;font-size:2.4rem}h3{letter-spacing:-0.6px;font-size:2.1rem}h4{font-size:1.9rem}h5{font-size:1.8rem}h6{font-size:1.8rem}a{color:#4a4a4a}a:hover{color:#111}p,ul,ol,dl{margin:0 0 2.5rem 0;font-size:1.5rem;text-rendering:geometricPrecision;-webkit-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-moz-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-o-font-feature-settings:"liga" 1, "onum" 1, "kern" 1}ol,ul{padding-left:2em}ol ol,ul ul,ul ol,ol ul{margin:0 0 0.4em 0;padding-left:2em}dl dt{float:left;clear:left;overflow:hidden;margin-bottom:1em;width:180px;text-align:right;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-bottom:1em;margin-left:200px}li{margin:0.4em 0}li li{margin:0}hr{display:block;margin:1.75em 0;padding:0;height:1px;border:0;border-top:#efefef 1px solid}blockquote{box-sizing:border-box;margin:1.75em 0 1.75em 0;padding:0 0 0 1.75em;border-left:#4a4a4a 0.4em solid;-moz-box-sizing:border-box}blockquote p{margin:0.8em 0;font-style:italic}blockquote small{display:inline-block;margin:0.8em 0 0.8em 1.5em;color:#ccc;font-size:0.9em}blockquote small:before{content:"\2014 \00A0"}blockquote cite{font-weight:700}blockquote cite a{font-weight:normal}mark{background-color:#fdffb6}code,tt{padding:1px 3px;border:#e3edf3 1px solid;background:#f7fafb;border-radius:2px;white-space:pre-wrap;font-family:Inconsolata, monospace, sans-serif;font-size:0.85em;font-feature-settings:"liga" 0;-webkit-font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" 0}pre{overflow:auto;box-sizing:border-box;margin:0 0 1.75em 0;padding:10px;width:100%;border:#e3edf3 1px solid;background:#f7fafb;border-radius:3px;white-space:pre;font-family:Inconsolata, monospace, sans-serif;font-size:0.9em;-moz-box-sizing:border-box}pre code,pre tt{padding:0;border:none;background:transparent;white-space:pre-wrap;font-size:inherit}kbd{display:inline-block;margin-bottom:0.4em;padding:1px 8px;border:#ccc 1px solid;background:#f4f4f4;border-radius:4px;box-shadow:0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 #fff inset;color:#666;text-shadow:#fff 0 1px 0;font-size:0.9em;font-weight:700}table{box-sizing:border-box;margin:1.75em 0;max-width:100%;width:100%;background-color:transparent;-moz-box-sizing:border-box}table th,table td{padding:8px;border-top:#efefef 1px solid;vertical-align:top;text-align:left;line-height:20px}table th{color:#000}table caption + thead tr:first-child th,table caption + thead tr:first-child td,table colgroup + thead tr:first-child th,table colgroup + thead tr:first-child td,table thead:first-child tr:first-child th,table thead:first-child tr:first-child td{border-top:0}table tbody + tbody{border-top:#efefef 2px solid}table table table{background-color:#fff}table tbody > tr:nth-child(odd) > td,table tbody > tr:nth-child(odd) > th{background-color:#f6f6f6}table.plain tbody > tr:nth-child(odd) > td,table.plain tbody > tr:nth-child(odd) > th{background:transparent}iframe,amp-iframe,.fluid-width-video-wrapper{display:block;margin:1.75em 0}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper amp-iframe{margin:0}textarea,select,input{margin:0 0 5px 0;padding:6px 9px;width:260px;outline:0;border:#e7eef2 1px solid;background:#fff;border-radius:4px;box-shadow:none;font-family:"Open Sans", sans-serif;font-size:1.6rem;line-height:1.4em;font-weight:100;-webkit-appearance:none}textarea{min-width:250px;min-height:80px;max-width:340px;width:100%;height:auto}input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="week"]:focus,input[type="time"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,textarea:focus{outline:none;outline-width:0;border:#bbc7cc 1px solid;background:#fff}select{width:270px;height:30px;line-height:30px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.main-header{position:relative;display:table;overflow:hidden;box-sizing:border-box;width:100%;height:50px;background:#5ba4e5 no-repeat center center;background-size:cover;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.content{background:#fff;padding-top:15px}.blog-title,.content{margin:auto;max-width:600px}.blog-title a{display:block;padding-right:16px;padding-left:16px;height:50px;color:#fff;text-decoration:none;font-family:"Open Sans", sans-serif;font-size:16px;line-height:50px;font-weight:600}.post{position:relative;margin-top:0;margin-right:16px;margin-left:16px;padding-bottom:0;max-width:100%;border-bottom:#ebf2f6 1px solid;word-wrap:break-word;font-size:0.95em;line-height:1.65em}.post-header{margin-bottom:1rem}.post-title{margin-bottom:0}.post-title a{text-decoration:none}.post-meta{display:block;margin:3px 0 0 0;color:#9eabb3;font-family:"Open Sans", sans-serif;font-size:1.3rem;line-height:2.2rem}.post-meta a{color:#9eabb3;text-decoration:none}.post-meta a:hover{text-decoration:underline}.post-meta .author{margin:0;font-size:1.3rem;line-height:1.3em}.post-date{display:inline-block;text-transform:uppercase;white-space:nowrap;font-size:1.2rem;line-height:1.2em}.post-image{margin:0;padding-top:3rem;padding-bottom:30px;border-top:1px #E8E8E8 solid}.post-content amp-img,.post-content amp-anim{position:relative;left:50%;display:block;padding:0;min-width:0;max-width:112%;width:calc(100% + 32px);height:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%)}.footnotes{font-size:1.3rem;line-height:1.6em;font-style:italic}.footnotes li{margin:0.6rem 0}.footnotes p{margin:0}.footnotes p a:last-child{text-decoration:none}.site-footer{position:relative;margin:0 auto 20px auto;padding:1rem 15px;max-width:600px;color:rgba(0,0,0,0.5);font-family:"Open Sans", sans-serif;font-size:1.1rem;line-height:1.75em}.site-footer a{color:rgba(0,0,0,0.5);text-decoration:none;font-weight:bold}.site-footer a:hover{border-bottom:#bbc7cc 1px solid}.poweredby{display:block;float:right;width:45%;text-align:right}.copyright{display:block;float:left;width:45%}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="main-header">
+        <nav class="blog-title">
+            <a href="../../">jeekdong's Blog</a>
+        </nav>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">《你不知道的JavaScript》读书笔记（八）----Promise</h1>
+                <section class="post-meta">
+                    <p class="author">by <a href="../../author/jeekdong/">jeekdong</a></p>
+                    <time class="post-date" datetime="2017-07-29">2017-07-29</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="http://localhost:2368/content/images/2017/07/You-Dont-Know-JS-2-3.jpg" width="600" height="400" layout="responsive"></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <div class="kg-card-markdown"><ul>
+<li>
+<p>一旦Promise决议，它就永远保持在这个状态。此时它就成为了不变值</p>
+</li>
+<li>
+<p>两种Promise的实现方式：</p>
+<pre><code class="language-javascript">
+  function bar(fooPromise) {
+  	// 侦听foo(...)的完成
+  	fooPromise.then(
+  		function(){
+  			// `foo(..)` 已经完成，所以开始做 `bar(..)`的任务
+  		},
+  		function(){
+  			// 啊,  `foo(..)`出错了
+  		}
+  	);
+  }
+  </code></pre>
+<pre><code class="language-javascript">
+  function bar() {
+  	// `foo(..)` 肯定已经完成了，所以执行 `bar(..)`的任务
+  }
+<p>function oopsBar() {<br>
+// 啊,  <code>foo(..)</code>出错了，所以<code>bar(..)</code> 没有执行<br>
+}</p>
+<p>// 对于 <code>baz()</code> 和 <code>oopsBaz()</code>同理</p>
+<p>var p = foo( 42 );</p>
+<p>p.then( bar, oopsBar );</p>
+<p>p.then( baz, oopsBaz );<br>
+</p></code></pre><br>
+<br><br>
+两种方法的区别是第一种方法bar(...)一定会被执行，并且会亲自处理错误的情况<p></p>
+</li>
+<li>
+<p>知道某个值是否是Promise很重要！！</p>
+<ul>
+<li>但是instance这个方法并不管用</li>
+<li>实际方法是<strong>判断其是否有then方法</strong></li>
+<li>这种判断其具有那些属性，对值的类型做出判断。一般将其叫为<strong>鸭子类型</strong></li>
+</ul>
+</li>
+<li>
+<p>Promise的信任问题：</p>
+<ul>
+<li><strong>调用过早</strong>对于一个Promise调用then的时候，即使这个Promise已经决议，提供给then的回调也总会被异步调用</li>
+<li><strong>调用过晚</strong>一个Promise决议后，这个Promise上所有的通过then(...)注册的回调都会在下一个异步时机点上立即调用</li>
+<li><strong>回调未调用</strong>没有任何东西，可以阻止Promise向你通知它的决议，即使如果Promise可能本身永远不会决议，也有相应的超时机制</li>
+<li><strong>未能传递参数</strong>若没有用任何值显示决议，那么这个值就是undefined；JavaScript中的函数总是保持其定义所在的作用域的闭包</li>
+<li><strong>吞掉错误</strong>Promise创建过程中的错误，这个错误会被捕捉，并使这个Promise被拒绝(Promise甚至把JS异常也变成了异常行为)；在then(...)注册的回调上出现错误，会使then(...)调用本身返回的Promise被拒绝</li>
+<li>**“是可信任的Promise吗”：**使用Promise.resolve确保返回的是一个可信任的Promise
+<ul>
+<li>如果向Promise.resolve(...)传递一个非Promise,非thenable的立即值，就会得到一个用这个值填充的Promise</li>
+<li>如果向Promise.resolve(...)传递一个真正的Promise，就只会返回同一个Promise</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>链式流</strong></p>
+<ul>
+<li>能实现链式的两个原因：
+<ul>
+<li>then(...)会返回一个Promise</li>
+<li>不管then(...)回调返回的值是什么，它都会被自动设置为被连接的Promise的完成(resolve)</li>
+</ul>
+</li>
+<li>当你不传入拒绝处理函数，会有一个默认的拒绝处理函数，它只是把错误重新抛出，这使得错误可以沿着Promise传播下去，直到遇到显示定义的拒绝处理函数</li>
+<li>then( null , function(err) {...} )只处理拒绝，相当于catch( function(err) {...} )</li>
+<li>reject(...)不会像resolve(...)一样进行展开，如果向reject(...)传入一个Promise/thenable值，它会把这个值原封不动地设置为拒绝理由</li>
+</ul>
+</li>
+<li>
+<p><strong>错误处理</strong></p>
+<ul>
+<li>try...catch(...)无法执行异步操作，node采用<code>error-first</code>的回调风格，Promise采用	<code>分离回调</code>风格</li>
+<li>Promise的错误处理是“绝望的陷阱”，你必须努力才能做对，<strong>任何Promise链的最后一步，不管是什么，总是存在未被查看的Promise中出现未被捕获的错误</strong></li>
+<li>成功的坑 ？....没看懂啊</li>
+</ul>
+</li>
+<li>
+<p><strong>Promise模式</strong></p>
+<ul>
+<li><strong>Promise.all( [p1,p2] )</strong>，类似于“门”的机制，<strong>要等待两个或更多并行/并发的任务都完成才能继续</strong>。它们完成的顺序并不重要，但是必须都要完成，门才能打开并让流程控制继续。从Promise.all返回的promise会受到一个完成消息msg，它是传入的promise的完成消息组成的数组，与指定的顺序一致</li>
+<li><strong>Promise.race([...])</strong>，一旦有任何一个Promise决议为完成Promise.race([...])就会完成，一旦有任何一个Promise决议为拒绝，Promise.race([...])就会拒绝
+<ul>
+<li>不过注意，如果传入一个空数组，则Promise永远不会决议</li>
+</ul>
+</li>
+<li>变体：
+<ul>
+<li>none([...])全都被拒绝，决议为完成值</li>
+<li>any([...])会忽略拒绝，只需完成一个就被决议为完成</li>
+<li>firsst([...])只要第一个Promise完成，就会忽略后续的任何拒绝与完成</li>
+<li>last([...])类似first，但却只有最后一个完成胜出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Promise API</strong></p>
+<ul>
+<li>new Promise(...)构造器</li>
+<li>Promise.resolve(...)和promise.reject(...)，其中Promise.resolve( function(resolve,reject) )，就相当于new Promise ( function(resolve,reject) )</li>
+<li>then(...)和catch(...),前者可注册完成和拒绝处理函数，后者只用来处理拒绝函数</li>
+<li>Promise.all( [p1,p2] )，<strong>从<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">MDN</a>的描述看来当有任意一个拒绝，则所有的Promises立即失败，并且丢弃其他promises</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Promise的局限性</strong></p>
+<ul>
+<li>顺序错误处理：Promise链中的错误很容易被无意中忽略掉</li>
+<li>单一值：分裂法(如果要多个值可以返回数组)，展开/传递参数(使用数组参数结构)</li>
+<li>单决议：异步的事件/数据流</li>
+<li>惯性：（一个将普通基于回调的异步改为基于Promise的异步）<em>Promise.wrap</em></li>
+<li>无法取消的Promise</li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="../../">jeekdong's Blog</a> © 2018</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+</body>

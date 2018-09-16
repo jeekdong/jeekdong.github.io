@@ -1,0 +1,427 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>详解CSS3特性----边框</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:2368/assets/built/screen.css?v=bb2cc0bddc">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="详解CSS3特性----边框">
+    <meta property="og:description" content="圆角效果 border-radius 实心圆：把宽度（width）与高度(height)值设置为一致（也就是正方形），并且四个圆角值都设置为它们值的一半。 div{     height:100px;/*与width设置一致*/     width:100px;     background:#9da;     border-radius:50px;/*四个圆角值都设置为宽度或高度值的一半*/     } 实心上半圆：把高度(height)设为宽度（width）的一半，并且只设置左上角和右上角的半径与元素的高度一致（大于也是可以的）。 div{     height:50px;/*是width的一半*/     width:100px;     background:#9da;     border-radius:50px 50px 0 0;/*半径至少设置为height的值*/     } 边框阴影box-shadow box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径][阴影扩展半径][阴影颜色]">
+    <meta property="og:url" content="http://localhost:2368/xiang-jie-css3te-xing-bian-kuang/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/08/css3-min.jpg">
+    <meta property="article:published_time" content="2017-08-19T12:28:30.000Z">
+    <meta property="article:modified_time" content="2017-08-20T08:12:20.000Z">
+    <meta property="article:tag" content="CSS3">
+    <meta property="article:tag" content="CSS">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="详解CSS3特性----边框">
+    <meta name="twitter:description" content="圆角效果 border-radius 实心圆：把宽度（width）与高度(height)值设置为一致（也就是正方形），并且四个圆角值都设置为它们值的一半。 div{     height:100px;/*与width设置一致*/     width:100px;     background:#9da;     border-radius:50px;/*四个圆角值都设置为宽度或高度值的一半*/     } 实心上半圆：把高度(height)设为宽度（width）的一半，并且只设置左上角和右上角的半径与元素的高度一致（大于也是可以的）。 div{     height:50px;/*是width的一半*/     width:100px;     background:#9da;     border-radius:50px 50px 0 0;/*半径至少设置为height的值*/     } 边框阴影box-shadow box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径][阴影扩展半径][阴影颜色]">
+    <meta name="twitter:url" content="http://localhost:2368/xiang-jie-css3te-xing-bian-kuang/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/08/css3-min.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="CSS3, CSS">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "详解CSS3特性----边框",
+    "url": "http://localhost:2368/xiang-jie-css3te-xing-bian-kuang/",
+    "datePublished": "2017-08-19T12:28:30.000Z",
+    "dateModified": "2017-08-20T08:12:20.000Z",
+    "image": "http://localhost:2368/content/images/2017/08/css3-min.jpg",
+    "keywords": "CSS3, CSS",
+    "description": "圆角效果 border-radius 实心圆：把宽度（width）与高度(height)值设置为一致（也就是正方形），并且四个圆角值都设置为它们值的一半。 div{     height:100px;/*与width设置一致*/     width:100px;     background:#9da;     border-radius:50px;/*四个圆角值都设置为宽度或高度值的一半*/     } 实心上半圆：把高度(height)设为宽度（width）的一半，并且只设置左上角和右上角的半径与元素的高度一致（大于也是可以的）。 div{     height:50px;/*是width的一半*/     width:100px;     background:#9da;     border-radius:50px 50px 0 0;/*半径至少设置为height的值*/     } 边框阴影box-shadow box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径][阴影扩展半径][阴影颜色]",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="http://localhost:2368/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "db19c8130b97"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-css3 tag-css">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">jeekdong's Blog</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+    <li class="nav-javascript" role="menuitem"><a href="../tag/javascript/">JavaScript</a></li>
+    <li class="nav-sublime" role="menuitem"><a href="../tag/sublime/">sublime</a></li>
+    <li class="nav-ubuntu" role="menuitem"><a href="../tag/ubuntu/">ubuntu</a></li>
+    <li class="nav-regex" role="menuitem"><a href="../tag/regex/">regex</a></li>
+    <li class="nav-css3" role="menuitem"><a href="../tag/css3/">CSS3</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/http://localhost:2368/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-css3 tag-css ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-08-19">19 August 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/css3/">CSS3</a>
+                </section>
+                <h1 class="post-full-title">详解CSS3特性----边框</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(/content/images/2017/08/css3-min.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <div class="kg-card-markdown"><ul>
+<li>
+<p><strong>圆角效果 <code>border-radius</code></strong></p>
+<ul>
+<li>实心圆：把宽度（width）与高度(height)值设置为一致（也就是正方形），并且四个圆角值都设置为它们值的一半。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-css">
+div{
+    height:100px;/*与width设置一致*/
+    width:100px;
+    background:#9da;
+    border-radius:50px;/*四个圆角值都设置为宽度或高度值的一半*/
+    }
+</code></pre>
+<ul>
+<li>实心上半圆：把高度(height)设为宽度（width）的一半，并且只设置左上角和右上角的半径与元素的高度一致（大于也是可以的）。</li>
+</ul>
+<pre><code class="language-css">
+div{
+    height:50px;/*是width的一半*/
+    width:100px;
+    background:#9da;
+    border-radius:50px 50px 0 0;/*半径至少设置为height的值*/
+    }
+</code></pre>
+<ul>
+<li>
+<p><strong>边框阴影<code>box-shadow</code></strong></p>
+<ul>
+<li><code>box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径][阴影扩展半径][阴影颜色][投影方式];</code></li>
+<li>参数值：<br>
+<img src="http://localhost:2368/content/images/2017/08/box-shadow.jpg" alt=""></li>
+<li>阴影模糊半径：此参数可选，其值只能是为正值，如果其值为0时，表示阴影不具有模糊效果，其值越大阴影的边缘就越模糊；</li>
+<li>阴影扩展半径：此参数可选，其值可以是正负值，如果值为正，则整个阴影都延展扩大，反之值为负值时，则缩小；</li>
+</ul>
+</li>
+<li>
+<p><strong>边框图片<code>border-image</code></strong></p>
+<ul>
+<li>参数值：<br>
+<img src="http://localhost:2368/content/images/2017/08/border-image.jpg" alt="border-image"></li>
+</ul>
+</li>
+<li>
+<p>repeat的意思就是重复，超出的部分会被剪裁，Round可以理解为圆满的铺满（同时也会重复）。为了实现圆满所以会压缩（或拉伸），Stretch 很好理解就是拉伸，有多长拉多长</p>
+</li>
+</ul>
+</div>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/jeekdong/">jeekdong</a></h4>
+            <p>Read <a href="../author/jeekdong/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/jeekdong/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(/content/images/2017/06/pexels-photo-90807-min.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— jeekdong's Blog —</small>
+                        <h3 class="read-next-card-header-title"><a href="../tag/css3/">CSS3</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../xiang-jie-css3te-xing-yong-hu-jie-mian/">详解CSS3特性----用户界面</a></li>
+                            <li><a href="../xiang-jie-css3te-xing-bu-ju/">详解CSS3特性----布局</a></li>
+                            <li><a href="../xiang-jie-css3te-xing-bian-xing-yu-dong-hua-xia-2/">详解CSS3特性----变形与动画（下）</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/css3/">See all 10 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-css3 tag-css">
+        <a class="post-card-image-link" href="../xiang-jie-css3te-xing-bei-jing/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/08/css3-min-1.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../xiang-jie-css3te-xing-bei-jing/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">CSS3</span>
+                <h2 class="post-card-title">详解CSS3特性----背景</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>background-origin： 设置元素背景图片的起始位置 background-origin ： border-box | padding-box | content-box; 如果背景不是no-repeat，这个属性无效，它会从边框开始显示。 background-clip: 用来将背景图片做适当的裁剪以适应需要 background-clip ： border-box | padding-box | content-box | no-clip 参数分别表示从边框、或内填充，或者内容区域向外裁剪背景。no-clip表示不裁切，和参数border-box显示同样的效果。backgroud-clip默认值为border-box backround-size: 设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。 background-size: auto(默认值) | &lt;长度值&gt; | &lt;</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-javascript tag-du-shu-bi-ji tag-you-dont-know-js">
+        <a class="post-card-image-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/08/You-Dont-Know-JS-2-2.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">《你不知道的JavaScript》读书笔记（十一）----性能测试与调优</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>性能测试：可能我们会首先想到以下的例子 var start = (new Date()).getTime();	// 或者`Date.now()` // 做一些操作 var end = (new Date()).getTime(); console.log( "Duration:", (end - start) ); 这个例子存在一点问题，首先得出的时间具有特殊性，不具有普适性，每次得到的值都是不一样的 环境为王 性能优化要注重基数，比如快20ns这种人根本无法辨别的提升根本无所谓ヾ(ｏ･ω･</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>jeekdong's Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">详解CSS3特性----边框</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E8%AF%A6%E8%A7%A3CSS3%E7%89%B9%E6%80%A7----%E8%BE%B9%E6%A1%86&amp;url=http://localhost:2368/xiang-jie-css3te-xing-bian-kuang/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/xiang-jie-css3te-xing-bian-kuang/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">jeekdong's Blog</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://localhost:2368/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <div style="text-align:center;font-size:1.2rem;">
+   <a href="http://www.miitbeian.gov.cn/">闽ICP备17015123号</a>   
+</div>
+
+</body>

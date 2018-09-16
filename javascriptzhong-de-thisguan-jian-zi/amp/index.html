@@ -1,0 +1,290 @@
+
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript中的this关键字</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="../../favicon.ico">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JavaScript中的this关键字">
+    <meta property="og:description" content='最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。 1.误解 指向自身 function foo(num) { 	console.log( "foo: " + num ); 	//记录foo被调用的次数 	this.count++; } foo.count = 0; var i; for (i=0; i 5) { 		foo( i ); 	} } // foo: 6 // foo: 7 // foo: 8 // foo: 9 // foo被调用了多少次？ console.log( foo.count ); // 0 --'>
+    <meta property="og:url" content="http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/04/This.jpg">
+    <meta property="article:published_time" content="2017-04-28T15:39:01.000Z">
+    <meta property="article:modified_time" content="2017-04-28T15:50:49.000Z">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaScript中的this关键字">
+    <meta name="twitter:description" content='最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。 1.误解 指向自身 function foo(num) { 	console.log( "foo: " + num ); 	//记录foo被调用的次数 	this.count++; } foo.count = 0; var i; for (i=0; i 5) { 		foo( i ); 	} } // foo: 6 // foo: 7 // foo: 8 // foo: 9 // foo被调用了多少次？ console.log( foo.count ); // 0 --'>
+    <meta name="twitter:url" content="http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/04/This.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "JavaScript中的this关键字",
+    "url": "http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/",
+    "datePublished": "2017-04-28T15:39:01.000Z",
+    "dateModified": "2017-04-28T15:50:49.000Z",
+    "image": "http://localhost:2368/content/images/2017/04/This.jpg",
+    "keywords": "JavaScript",
+    "description": "最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。 1.误解 指向自身 function foo(num) { \tconsole.log( &quot;foo: &quot; + num ); \t//记录foo被调用的次数 \tthis.count++; } foo.count &#x3D; 0; var i; for (i&#x3D;0; i 5) { \t\tfoo( i ); \t} } // foo: 6 // foo: 7 // foo: 8 // foo: 9 // foo被调用了多少次？ console.log( foo.count ); // 0 --",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../../rss/index.html">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,600,400">
+    <style amp-custom>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{margin:0.67em 0;font-size:2em}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{position:relative;vertical-align:baseline;font-size:75%;line-height:0}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}amp-img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;color:inherit;font:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;border:1px solid #c0c0c0}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}html{max-height:100%;height:100%;font-size:62.5%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)}body{max-height:100%;height:100%;color:#3a4145;background:#f4f8fb;letter-spacing:0.01rem;font-family:"Merriweather", serif;font-size:1.8rem;line-height:1.75em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"kern" 1;-moz-font-feature-settings:"kern" 1;-o-font-feature-settings:"kern" 1}::-moz-selection{background:#d6edff}::selection{background:#d6edff}h1,h2,h3,h4,h5,h6{margin:0 0 0.3em 0;color:#2e2e2e;font-family:"Open Sans", sans-serif;line-height:1.15em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-moz-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-o-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1}h1{text-indent:-2px;letter-spacing:-1px;font-size:2.6rem}h2{letter-spacing:0;font-size:2.4rem}h3{letter-spacing:-0.6px;font-size:2.1rem}h4{font-size:1.9rem}h5{font-size:1.8rem}h6{font-size:1.8rem}a{color:#4a4a4a}a:hover{color:#111}p,ul,ol,dl{margin:0 0 2.5rem 0;font-size:1.5rem;text-rendering:geometricPrecision;-webkit-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-moz-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-o-font-feature-settings:"liga" 1, "onum" 1, "kern" 1}ol,ul{padding-left:2em}ol ol,ul ul,ul ol,ol ul{margin:0 0 0.4em 0;padding-left:2em}dl dt{float:left;clear:left;overflow:hidden;margin-bottom:1em;width:180px;text-align:right;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-bottom:1em;margin-left:200px}li{margin:0.4em 0}li li{margin:0}hr{display:block;margin:1.75em 0;padding:0;height:1px;border:0;border-top:#efefef 1px solid}blockquote{box-sizing:border-box;margin:1.75em 0 1.75em 0;padding:0 0 0 1.75em;border-left:#4a4a4a 0.4em solid;-moz-box-sizing:border-box}blockquote p{margin:0.8em 0;font-style:italic}blockquote small{display:inline-block;margin:0.8em 0 0.8em 1.5em;color:#ccc;font-size:0.9em}blockquote small:before{content:"\2014 \00A0"}blockquote cite{font-weight:700}blockquote cite a{font-weight:normal}mark{background-color:#fdffb6}code,tt{padding:1px 3px;border:#e3edf3 1px solid;background:#f7fafb;border-radius:2px;white-space:pre-wrap;font-family:Inconsolata, monospace, sans-serif;font-size:0.85em;font-feature-settings:"liga" 0;-webkit-font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" 0}pre{overflow:auto;box-sizing:border-box;margin:0 0 1.75em 0;padding:10px;width:100%;border:#e3edf3 1px solid;background:#f7fafb;border-radius:3px;white-space:pre;font-family:Inconsolata, monospace, sans-serif;font-size:0.9em;-moz-box-sizing:border-box}pre code,pre tt{padding:0;border:none;background:transparent;white-space:pre-wrap;font-size:inherit}kbd{display:inline-block;margin-bottom:0.4em;padding:1px 8px;border:#ccc 1px solid;background:#f4f4f4;border-radius:4px;box-shadow:0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 #fff inset;color:#666;text-shadow:#fff 0 1px 0;font-size:0.9em;font-weight:700}table{box-sizing:border-box;margin:1.75em 0;max-width:100%;width:100%;background-color:transparent;-moz-box-sizing:border-box}table th,table td{padding:8px;border-top:#efefef 1px solid;vertical-align:top;text-align:left;line-height:20px}table th{color:#000}table caption + thead tr:first-child th,table caption + thead tr:first-child td,table colgroup + thead tr:first-child th,table colgroup + thead tr:first-child td,table thead:first-child tr:first-child th,table thead:first-child tr:first-child td{border-top:0}table tbody + tbody{border-top:#efefef 2px solid}table table table{background-color:#fff}table tbody > tr:nth-child(odd) > td,table tbody > tr:nth-child(odd) > th{background-color:#f6f6f6}table.plain tbody > tr:nth-child(odd) > td,table.plain tbody > tr:nth-child(odd) > th{background:transparent}iframe,amp-iframe,.fluid-width-video-wrapper{display:block;margin:1.75em 0}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper amp-iframe{margin:0}textarea,select,input{margin:0 0 5px 0;padding:6px 9px;width:260px;outline:0;border:#e7eef2 1px solid;background:#fff;border-radius:4px;box-shadow:none;font-family:"Open Sans", sans-serif;font-size:1.6rem;line-height:1.4em;font-weight:100;-webkit-appearance:none}textarea{min-width:250px;min-height:80px;max-width:340px;width:100%;height:auto}input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="week"]:focus,input[type="time"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,textarea:focus{outline:none;outline-width:0;border:#bbc7cc 1px solid;background:#fff}select{width:270px;height:30px;line-height:30px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.main-header{position:relative;display:table;overflow:hidden;box-sizing:border-box;width:100%;height:50px;background:#5ba4e5 no-repeat center center;background-size:cover;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.content{background:#fff;padding-top:15px}.blog-title,.content{margin:auto;max-width:600px}.blog-title a{display:block;padding-right:16px;padding-left:16px;height:50px;color:#fff;text-decoration:none;font-family:"Open Sans", sans-serif;font-size:16px;line-height:50px;font-weight:600}.post{position:relative;margin-top:0;margin-right:16px;margin-left:16px;padding-bottom:0;max-width:100%;border-bottom:#ebf2f6 1px solid;word-wrap:break-word;font-size:0.95em;line-height:1.65em}.post-header{margin-bottom:1rem}.post-title{margin-bottom:0}.post-title a{text-decoration:none}.post-meta{display:block;margin:3px 0 0 0;color:#9eabb3;font-family:"Open Sans", sans-serif;font-size:1.3rem;line-height:2.2rem}.post-meta a{color:#9eabb3;text-decoration:none}.post-meta a:hover{text-decoration:underline}.post-meta .author{margin:0;font-size:1.3rem;line-height:1.3em}.post-date{display:inline-block;text-transform:uppercase;white-space:nowrap;font-size:1.2rem;line-height:1.2em}.post-image{margin:0;padding-top:3rem;padding-bottom:30px;border-top:1px #E8E8E8 solid}.post-content amp-img,.post-content amp-anim{position:relative;left:50%;display:block;padding:0;min-width:0;max-width:112%;width:calc(100% + 32px);height:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%)}.footnotes{font-size:1.3rem;line-height:1.6em;font-style:italic}.footnotes li{margin:0.6rem 0}.footnotes p{margin:0}.footnotes p a:last-child{text-decoration:none}.site-footer{position:relative;margin:0 auto 20px auto;padding:1rem 15px;max-width:600px;color:rgba(0,0,0,0.5);font-family:"Open Sans", sans-serif;font-size:1.1rem;line-height:1.75em}.site-footer a{color:rgba(0,0,0,0.5);text-decoration:none;font-weight:bold}.site-footer a:hover{border-bottom:#bbc7cc 1px solid}.poweredby{display:block;float:right;width:45%;text-align:right}.copyright{display:block;float:left;width:45%}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="main-header">
+        <nav class="blog-title">
+            <a href="../../">jeekdong's Blog</a>
+        </nav>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">JavaScript中的this关键字</h1>
+                <section class="post-meta">
+                    <p class="author">by <a href="../../author/jeekdong/">jeekdong</a></p>
+                    <time class="post-date" datetime="2017-04-28">2017-04-28</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="http://localhost:2368/content/images/2017/04/This.jpg" width="600" height="400" layout="responsive"></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <div class="kg-card-markdown"><p>最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。</p>
+<h2 id="1">1.误解</h2>
+<hr>
+<h4 id>指向自身</h4>
+<pre><code class="language-javascript">
+function foo(num) {
+	console.log( "foo: " + num );
+
+	//记录foo被调用的次数
+	this.count++;
+}
+
+foo.count = 0;
+
+var i;
+
+for (i=0; i 5) {
+		foo( i );
+	}
+}
+// foo: 6
+// foo: 7
+// foo: 8
+// foo: 9
+
+// foo被调用了多少次？
+console.log( foo.count ); // 0 -- WTF?
+</code></pre>
+<p>执行foo.count = 0时，的确向函数对象foo添加了一个属性count。但是函数内部代码this.count中的this并不是指向那个函数对象（实际指向了全局对象），所以虽然属性名相同，根对象却并不相同，困惑随之而生。</p>
+<h4 id>它的作用域</h4>
+<p>this在任何情况下他都不指向函数的词法作用域。在JavaScriot内部，作用域确实和对象类似，可见的标识符都是它的属性。但是作用域“对象”无法通过JavaScript代码访问，它存在于javaScript引擎内部。'</p><pre><code class="language-javascript"><br>
+function foo() {<br>
+var a = 2;<br>
+this.bar();<br>
+}</code></pre>
+<p>function bar() {<br>
+console.log( this.a );<br>
+}</p>
+<p>foo(); //undefined<br>
+<br>
+<br></p>
+<h4 id="this">this是什么</h4>
+<p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。</p>
+<h2 id="2this">2.this的绑定规则</h2>
+<hr>
+<h4 id>默认绑定</h4>
+<p>在代码中，foo()是直接使用不带任何修饰的函数引用调用的，因此只能使用<strong>默认绑定</strong>，无法引用其他规则。</p>
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+
+var a = 2;
+
+foo(); // 2
+</code></pre>
+<br>
+####隐式绑定
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+<p>var obj = {<br>
+a: 2,<br>
+foo: foo<br>
+};</p>
+<p>obj.foo(); // 2<br>
+</p></code></pre><br>
+调用位置会使用obj上下文来引用函数，当函数引用有上下文对象时，<strong>隐式绑定</strong>规则会把函数调用中的this绑定到这个上下文对象。因为调用foo()时this被绑定到obj，因此this.a和obj.a是一样的。<p></p>
+<p>对象属性引用链中只有上一层或者说最后一层在调用位置中起作用。</p>
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+
+var obj2 = {
+	a: 42,
+	foo: foo
+};
+
+var obj1 = {
+	a: 2,
+	obj2: obj2
+};
+
+obj1.obj2.foo(); // 42
+</code></pre>
+<br>
+**隐式丢失**
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+<p>var obj = {<br>
+a: 2,<br>
+foo: foo<br>
+};</p>
+<p>var bar = obj.foo; // 函数别名！</p>
+<p>var a = "oops, global"; // <code>a</code>是全局对象的属性</p>
+<p>bar(); // "oops, global"<br>
+</p></code></pre><br>
+虽然bar是obj.foo的一个引用，但是实际上，它引用的是foo函数本身，因此此时应用了默认绑定。<p></p>
+<p>参数传递其实是一种隐式赋值。</p>
+<h4 id>显式绑定</h4>
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+
+var obj = {
+	a: 2
+};
+
+foo.call( obj ); // 2
+</code></pre>
+<p>通过foo.call(..)，我们可以在调用foo时强制把它的this绑定到obj上。</p>
+<h4 id="new">new绑定</h4>
+<p>JavaScript中new的机制实际上和面向类的语言完全不同。</p>
+<p>使用new来调用函数，或者说发生“构造函数”调用时，会自动执行下面操作。</p>
+<ol>
+<li>创建（构造）一个全新的对象</li>
+<li>这个新对象会被执行[[Prototype]]连接</li>
+<li>这个新对象会绑定到函数调用的this</li>
+<li>如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</li>
+</ol>
+<pre><code class="language-javascript">
+function foo(a) {
+	this.a = a;
+}
+
+var bar = new foo( 2 );
+console.log( bar.a ); // 2
+</code></pre>
+<p>使用new来调用foo(..)时，我们会构造一个新对象并把它绑定到foo(..)调用中的this上。</p>
+<h2 id="3">3.箭头函数</h2>
+<hr>
+<p>箭头函数并不是使用function关键自定义的，而是使用被称为“胖箭头”的操作符 <strong>=&gt;</strong> 定义的。箭头函数不使用this的四种标准规则，而好似根据外层（函数或者全局）作用于来决定this。</p>
+<pre><code class="language-javascript">
+function foo() {
+	// 返回一个箭头函数
+	return (a) =&gt; {
+		// `this` 继承自 `foo()`
+		console.log( this.a );
+	};
+}
+
+var obj1 = {
+	a: 2
+};
+
+var obj2 = {
+	a: 3
+};
+
+var bar = foo.call( obj1 );
+bar.call( obj2 ); // 2, 不是 3!
+</code></pre>
+<br>
+##4.判断this
+ ---
+<ol>
+<li>函数是否在new中调用（new绑定）？如果是的话this绑定的是新创建的对象。<br>
+<code>var bar = new foo()</code></li>
+<li>函数是否通过call，apply（显式绑定）或者硬绑定调用？如果是的话，this绑定的是指定的对象。<code>var bar = foo.call(obj)</code></li>
+<li>函数是否在某个上下文对象中调用（隐式调用）？如果是的话，this绑定的是那个上下文对象。<code>var bar = obj.foo()</code></li>
+<li>如果都不是的话，使用默认调用。如果在严格迷失下，就绑定到undifined，否则绑定到全局对象。<code>var bar = foo()</code><br>
+<br><br>
+<br><br>
+<br><br>
+<br></li>
+</ol>
+<h4 id>参考链接</h4>
+<ul>
+<li><a href="https://github.com/getify/You-Dont-Know-JS">You-Dont-Know-JS</a></li>
+</ul>
+</div>
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="../../">jeekdong's Blog</a> © 2018</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+</body>

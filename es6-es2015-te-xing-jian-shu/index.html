@@ -1,0 +1,502 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ES6/ES2015 特性简述</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:2368/assets/built/screen.css?v=bb2cc0bddc">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ES6/ES2015 特性简述">
+    <meta property="og:description" content="初学JS的时候都是以ES5为基础，随着深入学习运用到ES6的地方越来越多，了解新的特性与ES5的区别显得尤为重要。 ES6是 JavaScript 语言的下一代标准，已经在2015年6月正式发布了它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。 1.let, const JavaScript 最初就只有一种声明变量的方式:var 。不过，var语句遵从变量提升的规则。也就是说，var声明表现的好像是变量声明在当前执行上下文（函数）的顶部一样。这会导致不直观的行为. let 则实际上为JavaScript新增了块级作用域。用它所声明的变量，只在let命令所在的代码块内有效。换句话说，在 for 循环内，或者仅在封闭括号内声明的变量，只在该块内有效，并且只在该 let 语句之后有效。这种行为更直观。用 let替代 var 在很多情况下是被鼓励的。 let name = 'zach' while (true) {     let name = 'obama'">
+    <meta property="og:url" content="http://localhost:2368/es6-es2015-te-xing-jian-shu/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/04/ES6-1-2.jpg">
+    <meta property="article:published_time" content="2017-04-03T15:33:42.000Z">
+    <meta property="article:modified_time" content="2017-04-11T08:20:27.000Z">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ES6/ES2015 特性简述">
+    <meta name="twitter:description" content="初学JS的时候都是以ES5为基础，随着深入学习运用到ES6的地方越来越多，了解新的特性与ES5的区别显得尤为重要。 ES6是 JavaScript 语言的下一代标准，已经在2015年6月正式发布了它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。 1.let, const JavaScript 最初就只有一种声明变量的方式:var 。不过，var语句遵从变量提升的规则。也就是说，var声明表现的好像是变量声明在当前执行上下文（函数）的顶部一样。这会导致不直观的行为. let 则实际上为JavaScript新增了块级作用域。用它所声明的变量，只在let命令所在的代码块内有效。换句话说，在 for 循环内，或者仅在封闭括号内声明的变量，只在该块内有效，并且只在该 let 语句之后有效。这种行为更直观。用 let替代 var 在很多情况下是被鼓励的。 let name = 'zach' while (true) {     let name = 'obama'">
+    <meta name="twitter:url" content="http://localhost:2368/es6-es2015-te-xing-jian-shu/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/04/ES6-1-2.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "ES6/ES2015 特性简述",
+    "url": "http://localhost:2368/es6-es2015-te-xing-jian-shu/",
+    "datePublished": "2017-04-03T15:33:42.000Z",
+    "dateModified": "2017-04-11T08:20:27.000Z",
+    "image": "http://localhost:2368/content/images/2017/04/ES6-1-2.jpg",
+    "keywords": "JavaScript",
+    "description": "初学JS的时候都是以ES5为基础，随着深入学习运用到ES6的地方越来越多，了解新的特性与ES5的区别显得尤为重要。 ES6是 JavaScript 语言的下一代标准，已经在2015年6月正式发布了它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。 1.let, const JavaScript 最初就只有一种声明变量的方式:var 。不过，var语句遵从变量提升的规则。也就是说，var声明表现的好像是变量声明在当前执行上下文（函数）的顶部一样。这会导致不直观的行为. let 则实际上为JavaScript新增了块级作用域。用它所声明的变量，只在let命令所在的代码块内有效。换句话说，在 for 循环内，或者仅在封闭括号内声明的变量，只在该块内有效，并且只在该 let 语句之后有效。这种行为更直观。用 let替代 var 在很多情况下是被鼓励的。 let name &#x3D; &#x27;zach&#x27; while (true) {     let name &#x3D; &#x27;obama&#x27;",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="http://localhost:2368/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "db19c8130b97"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-javascript">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">jeekdong's Blog</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+    <li class="nav-javascript" role="menuitem"><a href="../tag/javascript/">JavaScript</a></li>
+    <li class="nav-sublime" role="menuitem"><a href="../tag/sublime/">sublime</a></li>
+    <li class="nav-ubuntu" role="menuitem"><a href="../tag/ubuntu/">ubuntu</a></li>
+    <li class="nav-regex" role="menuitem"><a href="../tag/regex/">regex</a></li>
+    <li class="nav-css3" role="menuitem"><a href="../tag/css3/">CSS3</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/http://localhost:2368/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-javascript ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-04-03">3 April 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/javascript/">JavaScript</a>
+                </section>
+                <h1 class="post-full-title">ES6/ES2015 特性简述</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(/content/images/2017/04/ES6-1-2.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <div class="kg-card-markdown"><p>初学JS的时候都是以ES5为基础，随着深入学习运用到ES6的地方越来越多，了解新的特性与ES5的区别显得尤为重要。</p>
+<blockquote>
+<p>ES6是 JavaScript 语言的下一代标准，已经在2015年6月正式发布了它的目标，是使得 JavaScript 语言可以用来编写复杂的大型应用程序，成为企业级开发语言。</p>
+</blockquote>
+<h3 id="1letconst">1.let, const</h3>
+<p>JavaScript 最初就只有一种声明变量的方式:<code>var</code> 。不过，<code>var</code>语句遵从变量提升的规则。也就是说，<code>var</code>声明表现的好像是变量声明在当前执行上下文（函数）的顶部一样。这会导致不直观的行为.</p>
+<h6 id="let">let</h6>
+<p>则实际上为JavaScript新增了块级作用域。用它所声明的变量，只在<code>let</code>命令所在的代码块内有效。换句话说，在 for 循环内，或者仅在封闭括号内声明的变量，只在该块内有效，并且只在该 <code>let</code> 语句之后有效。这种行为更直观。用 <code>let</code>替代 var 在很多情况下是被鼓励的。</p>
+<pre><code class="language-javascript">let name = 'zach'
+while (true) {
+    let name = 'obama'
+    console.log(name)  //obama
+    break
+}
+console.log(name)  //zach
+</code></pre>
+<br>
+######const
+`const `的概念稍微复杂点。在 JavaScript 中，所有声明都是**可重新绑定的**（rebindable） 。`const` 语句与 `let` 和 `var `语句相反，它不允许在初始声明后，将名称重新绑定到不同对象。
+<pre><code class="language-javascript">const foo = 3; //foo 被绑定到基础类型数据 3。
+foo = ["abc", "def"]; // TypeError exception!
+</code></pre>
+ ---
+###2.class, extends, super
+ES6提供了更接近传统语言的写法，引入了`Class`（类）这个概念。新的`class`写法让对象原型的写法更加清晰、更像面向对象编程的语法，也更加通俗易懂。
+<pre><code class="language-javascript">class Animal {
+    constructor(){
+        this.type = 'animal'
+    }
+    says(say){
+        console.log(this.type + ' says ' + say)
+    }
+}
+<p>let animal = new Animal()<br>
+animal.says('hello') //animal says hello</p>
+<p>class Cat extends Animal {<br>
+constructor(){<br>
+super()<br>
+this.type = 'cat'<br>
+}<br>
+}</p>
+<p>let cat = new Cat()<br>
+cat.says('hello') //cat says hello<br>
+</p></code></pre><br>
+上面代码首先用<code>class</code>定义了一个“类”，可以看到里面有一个<code>constructor</code>方法，这就是构造方法，而<code>this</code>关键字则代表实例对象。简单地说，<code>constructor</code>内定义的方法和属性是实例对象自己的，而<code>constructor</code>外定义的方法和属性则是所有实力对象可以共享的。
+<p><code>Class</code>之间可以通过<code>extends</code>关键字实现继承，这比ES5的通过修改原型链实现继承，要清晰和方便很多。上面定义了一个Cat类，该类通过<code>extends</code>关键字，继承了Animal类的所有属性和方法。</p>
+<p><code>super</code>关键字，它指代父类的实例（即父类的<code>this</code>对象）。子类必须在<code>constructor</code>方法中调用<code>super</code>方法，否则新建实例时会报错。这是因为子类没有自己的<code>this</code>对象，而是继承父类的<code>this</code>对象，然后对其进行加工。如果不调用<code>super</code>方法，子类就得不到<code>this</code>对象。</p>
+<h2 id="es6thissuperthis">ES6的继承机制，实质是先创造父类的实例对象<code>this</code>（所以必须先调用<code>super</code>方法），然后再用子类的构造函数修改<code>this</code>。</h2>
+<h3 id="3this">3.箭头函数和词法 this</h3>
+<pre><code class="language-javascript">// ES2015 之前
+[1, 2, 3, 4].forEach(function(element, idx) {
+    console.log(element);
+});
+
+// ES2015 之后：箭头函数
+[1, 2, 3, 4].forEach((element, idx) =&gt; {
+    console.log(element);
+});
+</code></pre>
+<h2 id="thisargumentssupernewtarget">起初这可能看起来像小的改进。不过，当箭头函数遇到<code>this</code>、<code>arguments</code>、 <code>super</code> 和 <code>new.target</code> 时，表现的就完全不同了。这些都是在函数作用域内局部预定义的声明。箭头函数是从外层函数继承这些元素的值，而不是声明重新声明一套。</h2>
+<h3 id="4">4.模板字符串字面量</h3>
+<p>用反引号来标识起始，用${}来引用变量，而且所有的空格和缩进都会被保留在输出之中。</p>
+<h2 id="precodeclasslanguagejavascriptconststrtheresultofoperationopissomenumbercodepre"><pre><code class="language-javascript">const str = <code>The result of operation ${op} is ${someNumber}</code>;<br>
+</code></pre></h2>
+<h3 id="5">5.解构</h3>
+<p>自动解析数组或对象中的值。比如若一个函数要返回多个值，常规的做法是返回一个对象，将每个值做为这个对象的属性返回。但在ES6中，利用解构这一特性，可以直接返回一个数组，然后数组中的值会自动被解析到对应接收该值的变量中。</p>
+<h2 id="precodeclasslanguagejavascriptletcatkenletdoglililetzoocatdogconsolelogzooobjectcatkendoglilicodepre"><pre><code class="language-javascript">let cat = 'ken'<br>
+let dog = 'lili'<br>
+let zoo = {cat, dog}<br>
+console.log(zoo)  //Object {cat: "ken", dog: "lili"}<br>
+</code></pre></h2>
+<h3 id="6rest">6.默认参数和 rest 运算符</h3>
+<p>函数现在支持默认参数，简化了检查一个参数是否存在，然后给它设置值的常见模式。</p>
+<pre><code class="language-javascript">function animal(type = 'cat'){
+    console.log(type)
+}
+animal()
+</code></pre>
+<p>不定参数是在函数中使用命名参数同时接收不定数量的未命名参数。这只是一种语法糖，在以前的JavaScript代码中我们可以通过<code>arguments</code>变量来达到这一目的。不定参数的格式是三个句点后跟代表所有不定参数的变量名。</p>
+<pre><code class="language-javascript">function manyArgs(a, b, ...args) {
+    // args === ['Hello', 'World', true]
+}
+
+manyArgs(1, 2, 'Hello', 'World', true);
+</code></pre>
+<hr>
+<h3 id="7javascript">7.新的 JavaScript 集合</h3>
+<p>虽然 JavaScript 有必要的能力实现很多数据结构，但是有些数据结构最好是通过优化来实现，而这些优化只能靠解释器来实现。ECMAScript 2015 工作组决定解决此问题，并提出了 <code>Set</code> 、<code>Map</code> 、 <code>WeakSet</code> 和 <code>WeakMap</code> 。</p>
+<p><code>Set</code> 存储唯一的对象。对象要出现在集合中必须通过测试。 <code>Set</code>用特殊的比较语法（与 === 很相似）来检查对象的相等性。</p>
+<p><code>Map</code> 对 <code>Set</code> 进行了扩展，让任意值与唯一键关联在一起。也就是说， <code>Map</code> 允许使用任意唯一的键，这与普通 JavaScript 对象形成了对比（普通 JavaScript 对象只允许用字符串作为键）。</p>
+<p><code>WeakSet</code> 表现的像 <code>Set</code> ，但是它不会取得存储在它其中的对象的所有权。也就是说， <code>WeakSet</code> 内的对象在集合外的对象不再引用它们之后，就变成了无效的了。 <code>WeakSet</code> 值只允许对象存储在其内，不允许原始值。</p>
+<p><code>WeakMap</code> 是在键上弱（像 <code>WeakSet</code>），在它存储的值上强。</p>
+<pre><code class="language-javascript">var mySet = new Set();
+
+mySet.add(1);
+mySet.add(5);
+mySet.add("some text");
+
+mySet.has(1); // true
+mySet.has(3); // false, 3还没有被添加到set中
+mySet.has(5);              // true
+mySet.has(Math.sqrt(25));  // true
+mySet.has("Some Text".toLowerCase()); // true
+
+mySet.size; // 3
+
+mySet.delete(5); // 从set中移除5
+mySet.has(5);    // false, 5已经被移除
+
+mySet.size; // 2, 我们刚刚移除了一个值
+</code></pre>
+<hr>
+<h3 id="8">8.总结</h3>
+<p>以上就是ES6最常用的一些语法，ES6的特性不止于此，如需更详细的ES6新特性讲解可转步阮一峰老师的<a href="http://es6.ruanyifeng.com/#README">ECMAScript 6 入门</a><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br></p>
+<h5 id="">参考链接</h5>
+<ul>
+<li><a href="http://www.jianshu.com/p/ebfeb687eb70">30分钟掌握ES6/ES2015核心内容</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Set">MDN</a></li>
+<li><a href="http://www.open-open.com/lib/view/open1481600513090.html">JavaScript 2015 特性概述</a></li>
+</ul>
+</div>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/jeekdong/">jeekdong</a></h4>
+            <p>Read <a href="../author/jeekdong/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/jeekdong/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(/content/images/2017/06/pexels-photo-90807-min.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— jeekdong's Blog —</small>
+                        <h3 class="read-next-card-header-title"><a href="../tag/javascript/">JavaScript</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">《你不知道的JavaScript》读书笔记（十一）----性能测试与调优</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-cheng-xu-xing-neng/">《你不知道的JavaScript》读书笔记（十）----程序性能</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-jiu-sheng-cheng-qi/">《你不知道的JavaScript》读书笔记（九）----生成器</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/javascript/">See all 16 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-javascript">
+        <a class="post-card-image-link" href="../javascriptbi-bao/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/04/javascript-closures-1.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../javascriptbi-bao/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">JavaScript闭包</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。 0x00 什么是闭包 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。-------------MDN 闭包是什么?闭包是Closure，这是静态语言所不具有的一个新特性。但是闭包也不是什么复杂到不可理解的东西，简而言之， 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在。 闭包就是就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈上分配而是在堆上分配 为了便于理解，我们可以简单的将闭包理解为： 闭包：是指有权访问另外一个函数作用域中的变量的函数。 创建闭包的常见方式，</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">6 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-ubuntu">
+        <a class="post-card-image-link" href="../ubuntu-guan-yu-hashxiao-yan-he-bu-fu-de-jie-jue/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/03/ubuntu.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../ubuntu-guan-yu-hashxiao-yan-he-bu-fu-de-jie-jue/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">ubuntu</span>
+                <h2 class="post-card-title">ubuntu 关于Hash校验和不符的解决</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>问题 最近需要在ubuntu14.04中安装shadowsocks，但是每次使用sudo apt-get update来更新源软件时都会显示Hash校验和不符，无法下载。 再使用sudo apt-get install shadowsocks-qt5来安装便会提示缺少依赖，因为Update并没有更新我们新加源的软件。 原因 这就很奇怪，一开始我还以为自己的网络原因，或是服务器抽风，隔了一天继续尝试，依然无法更新，上网谷歌了一翻，才发现原来是运营商缓存的问题，出现这个错误的原因是 Ubuntu 下载的索引文件不是来自指定的软件源，而是网络服务提供商的缓存。 随着中国互联网网站和网民数量的剧增，互联网用户经常会遇到网站服务器因超负载链接而出现反应时间很慢的情况。对于网站运营商来说，增加昂贵的带宽并不是唯一的解决方法，有一种费用相对较为低廉，而效果又非常理想的服务方式正在广为人们所接受，那就是Web高速缓存技术。 Web高速缓存基于以下事实: 特定的WWW对象经常被多个网络用户再次请求时，</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">2 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>jeekdong's Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">ES6/ES2015 特性简述</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=ES6%2FES2015%20%E7%89%B9%E6%80%A7%E7%AE%80%E8%BF%B0&amp;url=http://localhost:2368/es6-es2015-te-xing-jian-shu/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/es6-es2015-te-xing-jian-shu/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">jeekdong's Blog</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://localhost:2368/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <div style="text-align:center;font-size:1.2rem;">
+   <a href="http://www.miitbeian.gov.cn/">闽ICP备17015123号</a>   
+</div>
+
+</body>

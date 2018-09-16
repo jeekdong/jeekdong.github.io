@@ -1,0 +1,553 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>JavaScript中的this关键字</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:2368/assets/built/screen.css?v=bb2cc0bddc">
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JavaScript中的this关键字">
+    <meta property="og:description" content='最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。 1.误解 指向自身 function foo(num) { 	console.log( "foo: " + num ); 	//记录foo被调用的次数 	this.count++; } foo.count = 0; var i; for (i=0; i 5) { 		foo( i ); 	} } // foo: 6 // foo: 7 // foo: 8 // foo: 9 // foo被调用了多少次？ console.log( foo.count ); // 0 --'>
+    <meta property="og:url" content="http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/04/This.jpg">
+    <meta property="article:published_time" content="2017-04-28T15:39:01.000Z">
+    <meta property="article:modified_time" content="2017-04-28T15:50:49.000Z">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaScript中的this关键字">
+    <meta name="twitter:description" content='最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。 1.误解 指向自身 function foo(num) { 	console.log( "foo: " + num ); 	//记录foo被调用的次数 	this.count++; } foo.count = 0; var i; for (i=0; i 5) { 		foo( i ); 	} } // foo: 6 // foo: 7 // foo: 8 // foo: 9 // foo被调用了多少次？ console.log( foo.count ); // 0 --'>
+    <meta name="twitter:url" content="http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/04/This.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "JavaScript中的this关键字",
+    "url": "http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/",
+    "datePublished": "2017-04-28T15:39:01.000Z",
+    "dateModified": "2017-04-28T15:50:49.000Z",
+    "image": "http://localhost:2368/content/images/2017/04/This.jpg",
+    "keywords": "JavaScript",
+    "description": "最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。 1.误解 指向自身 function foo(num) { \tconsole.log( &quot;foo: &quot; + num ); \t//记录foo被调用的次数 \tthis.count++; } foo.count &#x3D; 0; var i; for (i&#x3D;0; i 5) { \t\tfoo( i ); \t} } // foo: 6 // foo: 7 // foo: 8 // foo: 9 // foo被调用了多少次？ console.log( foo.count ); // 0 --",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <script src="http://localhost:2368/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "db19c8130b97"
+});
+</script>
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../rss/index.html">
+
+</head>
+<body class="post-template tag-javascript">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="../">jeekdong's Blog</a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="../">Home</a></li>
+    <li class="nav-javascript" role="menuitem"><a href="../tag/javascript/">JavaScript</a></li>
+    <li class="nav-sublime" role="menuitem"><a href="../tag/sublime/">sublime</a></li>
+    <li class="nav-ubuntu" role="menuitem"><a href="../tag/ubuntu/">ubuntu</a></li>
+    <li class="nav-regex" role="menuitem"><a href="../tag/regex/">regex</a></li>
+    <li class="nav-css3" role="menuitem"><a href="../tag/css3/">CSS3</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/http://localhost:2368/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-javascript ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-04-28">28 April 2017</time>
+                        <span class="date-divider">/</span> <a href="../tag/javascript/">JavaScript</a>
+                </section>
+                <h1 class="post-full-title">JavaScript中的this关键字</h1>
+            </header>
+
+            <figure class="post-full-image" style="background-image: url(/content/images/2017/04/This.jpg)">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <div class="kg-card-markdown"><p>最近在看《你不知道的JavaScript》这本书，感觉受益良多。初学时感觉this关键字十分神秘，时常搞不清他的指向，但是在《你不知道的JavaScript》中讲解透彻，特别总结关键知识点如下。</p>
+<h2 id="1">1.误解</h2>
+<hr>
+<h4 id="">指向自身</h4>
+<pre><code class="language-javascript">
+function foo(num) {
+	console.log( "foo: " + num );
+
+	//记录foo被调用的次数
+	this.count++;
+}
+
+foo.count = 0;
+
+var i;
+
+for (i=0; i&lt;10; i++) {
+	if (i &gt; 5) {
+		foo( i );
+	}
+}
+// foo: 6
+// foo: 7
+// foo: 8
+// foo: 9
+
+// foo被调用了多少次？
+console.log( foo.count ); // 0 -- WTF?
+</code></pre>
+<p>执行foo.count = 0时，的确向函数对象foo添加了一个属性count。但是函数内部代码this.count中的this并不是指向那个函数对象（实际指向了全局对象），所以虽然属性名相同，根对象却并不相同，困惑随之而生。</p>
+<h4 id="">它的作用域</h4>
+<p>this在任何情况下他都不指向函数的词法作用域。在JavaScriot内部，作用域确实和对象类似，可见的标识符都是它的属性。但是作用域“对象”无法通过JavaScript代码访问，它存在于javaScript引擎内部。'</p><pre><code class="language-javascript"><br>
+function foo() {<br>
+var a = 2;<br>
+this.bar();<br>
+}
+<p>function bar() {<br>
+console.log( this.a );<br>
+}</p>
+<p>foo(); //undefined<br>
+</p></code></pre><br>
+<br>
+<h4 id="this">this是什么</h4>
+<p>this是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。</p>
+<h2 id="2this">2.this的绑定规则</h2>
+<hr>
+<h4 id="">默认绑定</h4>
+<p>在代码中，foo()是直接使用不带任何修饰的函数引用调用的，因此只能使用<strong>默认绑定</strong>，无法引用其他规则。</p>
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+
+var a = 2;
+
+foo(); // 2
+</code></pre>
+<br>
+####隐式绑定
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+<p>var obj = {<br>
+a: 2,<br>
+foo: foo<br>
+};</p>
+<p>obj.foo(); // 2<br>
+</p></code></pre><br>
+调用位置会使用obj上下文来引用函数，当函数引用有上下文对象时，<strong>隐式绑定</strong>规则会把函数调用中的this绑定到这个上下文对象。因为调用foo()时this被绑定到obj，因此this.a和obj.a是一样的。
+<p>对象属性引用链中只有上一层或者说最后一层在调用位置中起作用。</p>
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+
+var obj2 = {
+	a: 42,
+	foo: foo
+};
+
+var obj1 = {
+	a: 2,
+	obj2: obj2
+};
+
+obj1.obj2.foo(); // 42
+</code></pre>
+<br>
+**隐式丢失**
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+<p>var obj = {<br>
+a: 2,<br>
+foo: foo<br>
+};</p>
+<p>var bar = obj.foo; // 函数别名！</p>
+<p>var a = "oops, global"; // <code>a</code>是全局对象的属性</p>
+<p>bar(); // "oops, global"<br>
+</p></code></pre><br>
+虽然bar是obj.foo的一个引用，但是实际上，它引用的是foo函数本身，因此此时应用了默认绑定。
+<p>参数传递其实是一种隐式赋值。</p>
+<h4 id="">显式绑定</h4>
+<pre><code class="language-javascript">
+function foo() {
+	console.log( this.a );
+}
+
+var obj = {
+	a: 2
+};
+
+foo.call( obj ); // 2
+</code></pre>
+<p>通过foo.call(..)，我们可以在调用foo时强制把它的this绑定到obj上。</p>
+<h4 id="new">new绑定</h4>
+<p>JavaScript中new的机制实际上和面向类的语言完全不同。</p>
+<p>使用new来调用函数，或者说发生“构造函数”调用时，会自动执行下面操作。</p>
+<ol>
+<li>创建（构造）一个全新的对象</li>
+<li>这个新对象会被执行[[Prototype]]连接</li>
+<li>这个新对象会绑定到函数调用的this</li>
+<li>如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</li>
+</ol>
+<pre><code class="language-javascript">
+function foo(a) {
+	this.a = a;
+}
+
+var bar = new foo( 2 );
+console.log( bar.a ); // 2
+</code></pre>
+<p>使用new来调用foo(..)时，我们会构造一个新对象并把它绑定到foo(..)调用中的this上。</p>
+<h2 id="3">3.箭头函数</h2>
+<hr>
+<p>箭头函数并不是使用function关键自定义的，而是使用被称为“胖箭头”的操作符 <strong>=&gt;</strong> 定义的。箭头函数不使用this的四种标准规则，而好似根据外层（函数或者全局）作用于来决定this。</p>
+<pre><code class="language-javascript">
+function foo() {
+	// 返回一个箭头函数
+	return (a) =&gt; {
+		// `this` 继承自 `foo()`
+		console.log( this.a );
+	};
+}
+
+var obj1 = {
+	a: 2
+};
+
+var obj2 = {
+	a: 3
+};
+
+var bar = foo.call( obj1 );
+bar.call( obj2 ); // 2, 不是 3!
+</code></pre>
+<br>
+##4.判断this
+ ---
+<ol>
+<li>函数是否在new中调用（new绑定）？如果是的话this绑定的是新创建的对象。<br>
+<code>var bar = new foo()</code></li>
+<li>函数是否通过call，apply（显式绑定）或者硬绑定调用？如果是的话，this绑定的是指定的对象。<code>var bar = foo.call(obj)</code></li>
+<li>函数是否在某个上下文对象中调用（隐式调用）？如果是的话，this绑定的是那个上下文对象。<code>var bar = obj.foo()</code></li>
+<li>如果都不是的话，使用默认调用。如果在严格迷失下，就绑定到undifined，否则绑定到全局对象。<code>var bar = foo()</code><br>
+<br><br>
+<br><br>
+<br><br>
+<br></li>
+</ol>
+<h4 id="">参考链接</h4>
+<ul>
+<li><a href="https://github.com/getify/You-Dont-Know-JS">You-Dont-Know-JS</a></li>
+</ul>
+</div>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <span class="avatar-wrapper"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</span>
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="../author/jeekdong/">jeekdong</a></h4>
+            <p>Read <a href="../author/jeekdong/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="../author/jeekdong/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+                <article class="read-next-card" style="background-image: url(/content/images/2017/06/pexels-photo-90807-min.jpeg)">
+                    <header class="read-next-card-header">
+                        <small class="read-next-card-header-sitetitle">— jeekdong's Blog —</small>
+                        <h3 class="read-next-card-header-title"><a href="../tag/javascript/">JavaScript</a></h3>
+                    </header>
+                    <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"></path></svg>
+</div>
+                    <div class="read-next-card-content">
+                        <ul>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-yi-xing-neng-ce-shi-yu-diao-you/">《你不知道的JavaScript》读书笔记（十一）----性能测试与调优</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-shi-cheng-xu-xing-neng/">《你不知道的JavaScript》读书笔记（十）----程序性能</a></li>
+                            <li><a href="../ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-jiu-sheng-cheng-qi/">《你不知道的JavaScript》读书笔记（九）----生成器</a></li>
+                        </ul>
+                    </div>
+                    <footer class="read-next-card-footer">
+                        <a href="../tag/javascript/">See all 16 posts →</a>
+                    </footer>
+                </article>
+
+                <article class="post-card post tag-sublime">
+        <a class="post-card-image-link" href="../sublime-text-3chang-yong-cha-jian/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/05/sublime-1.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../sublime-text-3chang-yong-cha-jian/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">sublime</span>
+                <h2 class="post-card-title">Sublime Text 3常用插件</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>Sublime Text：一款具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，不仅具有华丽的界面，还支持插件扩展机制 使用Sublime Text，插件则是不可缺少的存在。而插件的备份就显得非常的重要，否则每次更换设备就需要重新手动安转插件，显得十分繁琐。在sublime 中这件事很简单，只需将Packages（Preferences &gt; Browse Packages...）中内容拷贝一份，同步云端即可；至于存储何处，云盘，Github，都可以，譬如先前有存一份于sublime_packages，每有所需只要 下载下来，替换掉原Packages下内容就好。 1. 安装package</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">6 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+                <article class="post-card post tag-javascript">
+        <a class="post-card-image-link" href="../javascriptbi-bao/">
+            <div class="post-card-image" style="background-image: url(/content/images/2017/04/javascript-closures-1.jpg)"></div>
+        </a>
+    <div class="post-card-content">
+        <a class="post-card-content-link" href="../javascriptbi-bao/">
+            <header class="post-card-header">
+                    <span class="post-card-tags">JavaScript</span>
+                <h2 class="post-card-title">JavaScript闭包</h2>
+            </header>
+            <section class="post-card-excerpt">
+                <p>闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。 0x00 什么是闭包 闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。-------------MDN 闭包是什么?闭包是Closure，这是静态语言所不具有的一个新特性。但是闭包也不是什么复杂到不可理解的东西，简而言之， 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在。 闭包就是就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈上分配而是在堆上分配 为了便于理解，我们可以简单的将闭包理解为： 闭包：是指有权访问另外一个函数作用域中的变量的函数。 创建闭包的常见方式，</p>
+            </section>
+        </a>
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        jeekdong
+                    </div>
+
+                        <a href="../author/jeekdong/" class="static-avatar author-profile-image"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">6 min read</span>
+
+        </footer>
+    </div>
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="../">
+            <span>jeekdong's Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">JavaScript中的this关键字</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=JavaScript%E4%B8%AD%E7%9A%84this%E5%85%B3%E9%94%AE%E5%AD%97&amp;url=http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/javascriptzhong-de-thisguan-jian-zi/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="../">jeekdong's Blog</a> © 2018</section>
+                <nav class="site-footer-nav">
+                    <a href="../">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="http://localhost:2368/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <div style="text-align:center;font-size:1.2rem;">
+   <a href="http://www.miitbeian.gov.cn/">闽ICP备17015123号</a>   
+</div>
+
+</body>

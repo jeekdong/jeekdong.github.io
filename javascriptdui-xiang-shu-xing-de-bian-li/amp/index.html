@@ -1,0 +1,278 @@
+
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript对象属性的遍历</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <link rel="shortcut icon" href="../../favicon.ico">
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="jeekdong's Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JavaScript对象属性的遍历">
+    <meta property="og:description" content="最近在学习数据结构与算法，遇到了遍历对象属性的需求，查找了一些资料发现JavaScript中提供的几个遍历方法各有不同，陷阱也不少。 0x00 在认识JavaScript中对象属性的遍历方法前，我们先复习一下JavaScript中的基础知识。 JavaScript中对象的属性分为两种：数据属性和访问器属性。 每一种属性内部都有一些特性，这里我们只关注对象属性的[[Enumerable]]特征，它表示是否通过 for-in 循环返回属性，也可以理解为：是否可枚举。 根据具体的上下文环境的不同，又可以将属性分为：原型属性和实例属性。 原型属性是定义在对象的原型（prototype）中的属性 实例属性可能来自构造函数中，或是构造函数实例化后添加的新属性。 0x01 在JavaScript中,遍历一个对象的属性往往没有那么简单，主要有两个方面的原因:第一JavaScript中的对象通常都处在某个原型链中,它会从一个或多个的上层原型上继承一些属性.第二是,JavaScript中的属性不光有值,它还有一些除了值以外的其他特性,其中一个影响属性遍历的特性就是[[Enumerable]],如果该值为true,则称这个属性是可枚举的,否则反之. 具体来说，JavaScript中提供了四种方法来遍历属性： for ... in Object.keys() Object.getOwnPropertyNames() for ... of">
+    <meta property="og:url" content="http://localhost:2368/javascriptdui-xiang-shu-xing-de-bian-li/">
+    <meta property="og:image" content="http://localhost:2368/content/images/2017/03/JavaScript.png">
+    <meta property="article:published_time" content="2017-03-18T12:33:24.000Z">
+    <meta property="article:modified_time" content="2017-04-23T07:53:05.000Z">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaScript对象属性的遍历">
+    <meta name="twitter:description" content="最近在学习数据结构与算法，遇到了遍历对象属性的需求，查找了一些资料发现JavaScript中提供的几个遍历方法各有不同，陷阱也不少。 0x00 在认识JavaScript中对象属性的遍历方法前，我们先复习一下JavaScript中的基础知识。 JavaScript中对象的属性分为两种：数据属性和访问器属性。 每一种属性内部都有一些特性，这里我们只关注对象属性的[[Enumerable]]特征，它表示是否通过 for-in 循环返回属性，也可以理解为：是否可枚举。 根据具体的上下文环境的不同，又可以将属性分为：原型属性和实例属性。 原型属性是定义在对象的原型（prototype）中的属性 实例属性可能来自构造函数中，或是构造函数实例化后添加的新属性。 0x01 在JavaScript中,遍历一个对象的属性往往没有那么简单，主要有两个方面的原因:第一JavaScript中的对象通常都处在某个原型链中,它会从一个或多个的上层原型上继承一些属性.第二是,JavaScript中的属性不光有值,它还有一些除了值以外的其他特性,其中一个影响属性遍历的特性就是[[Enumerable]],如果该值为true,则称这个属性是可枚举的,否则反之. 具体来说，JavaScript中提供了四种方法来遍历属性： for ... in Object.keys() Object.getOwnPropertyNames() for ... of">
+    <meta name="twitter:url" content="http://localhost:2368/javascriptdui-xiang-shu-xing-de-bian-li/">
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2017/03/JavaScript.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="jeekdong">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "jeekdong&#x27;s Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "jeekdong",
+        "url": "http://localhost:2368/author/jeekdong/",
+        "sameAs": []
+    },
+    "headline": "JavaScript对象属性的遍历",
+    "url": "http://localhost:2368/javascriptdui-xiang-shu-xing-de-bian-li/",
+    "datePublished": "2017-03-18T12:33:24.000Z",
+    "dateModified": "2017-04-23T07:53:05.000Z",
+    "image": "http://localhost:2368/content/images/2017/03/JavaScript.png",
+    "keywords": "JavaScript",
+    "description": "最近在学习数据结构与算法，遇到了遍历对象属性的需求，查找了一些资料发现JavaScript中提供的几个遍历方法各有不同，陷阱也不少。 0x00 在认识JavaScript中对象属性的遍历方法前，我们先复习一下JavaScript中的基础知识。 JavaScript中对象的属性分为两种：数据属性和访问器属性。 每一种属性内部都有一些特性，这里我们只关注对象属性的[[Enumerable]]特征，它表示是否通过 for-in 循环返回属性，也可以理解为：是否可枚举。 根据具体的上下文环境的不同，又可以将属性分为：原型属性和实例属性。 原型属性是定义在对象的原型（prototype）中的属性 实例属性可能来自构造函数中，或是构造函数实例化后添加的新属性。 0x01 在JavaScript中,遍历一个对象的属性往往没有那么简单，主要有两个方面的原因:第一JavaScript中的对象通常都处在某个原型链中,它会从一个或多个的上层原型上继承一些属性.第二是,JavaScript中的属性不光有值,它还有一些除了值以外的其他特性,其中一个影响属性遍历的特性就是[[Enumerable]],如果该值为true,则称这个属性是可枚举的,否则反之. 具体来说，JavaScript中提供了四种方法来遍历属性： for ... in Object.keys() Object.getOwnPropertyNames() for ... of",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 1.25">
+    <link rel="alternate" type="application/rss+xml" title="jeekdong's Blog" href="../../rss/index.html">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,600,400">
+    <style amp-custom>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{margin:0.67em 0;font-size:2em}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{position:relative;vertical-align:baseline;font-size:75%;line-height:0}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}amp-img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{margin:0;color:inherit;font:inherit}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{margin:0 2px;padding:0.35em 0.625em 0.75em;border:1px solid #c0c0c0}legend{padding:0;border:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-spacing:0;border-collapse:collapse}td,th{padding:0}html{max-height:100%;height:100%;font-size:62.5%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)}body{max-height:100%;height:100%;color:#3a4145;background:#f4f8fb;letter-spacing:0.01rem;font-family:"Merriweather", serif;font-size:1.8rem;line-height:1.75em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"kern" 1;-moz-font-feature-settings:"kern" 1;-o-font-feature-settings:"kern" 1}::-moz-selection{background:#d6edff}::selection{background:#d6edff}h1,h2,h3,h4,h5,h6{margin:0 0 0.3em 0;color:#2e2e2e;font-family:"Open Sans", sans-serif;line-height:1.15em;text-rendering:geometricPrecision;-webkit-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-moz-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1;-o-font-feature-settings:"dlig" 1, "liga" 1, "lnum" 1, "kern" 1}h1{text-indent:-2px;letter-spacing:-1px;font-size:2.6rem}h2{letter-spacing:0;font-size:2.4rem}h3{letter-spacing:-0.6px;font-size:2.1rem}h4{font-size:1.9rem}h5{font-size:1.8rem}h6{font-size:1.8rem}a{color:#4a4a4a}a:hover{color:#111}p,ul,ol,dl{margin:0 0 2.5rem 0;font-size:1.5rem;text-rendering:geometricPrecision;-webkit-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-moz-font-feature-settings:"liga" 1, "onum" 1, "kern" 1;-o-font-feature-settings:"liga" 1, "onum" 1, "kern" 1}ol,ul{padding-left:2em}ol ol,ul ul,ul ol,ol ul{margin:0 0 0.4em 0;padding-left:2em}dl dt{float:left;clear:left;overflow:hidden;margin-bottom:1em;width:180px;text-align:right;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-bottom:1em;margin-left:200px}li{margin:0.4em 0}li li{margin:0}hr{display:block;margin:1.75em 0;padding:0;height:1px;border:0;border-top:#efefef 1px solid}blockquote{box-sizing:border-box;margin:1.75em 0 1.75em 0;padding:0 0 0 1.75em;border-left:#4a4a4a 0.4em solid;-moz-box-sizing:border-box}blockquote p{margin:0.8em 0;font-style:italic}blockquote small{display:inline-block;margin:0.8em 0 0.8em 1.5em;color:#ccc;font-size:0.9em}blockquote small:before{content:"\2014 \00A0"}blockquote cite{font-weight:700}blockquote cite a{font-weight:normal}mark{background-color:#fdffb6}code,tt{padding:1px 3px;border:#e3edf3 1px solid;background:#f7fafb;border-radius:2px;white-space:pre-wrap;font-family:Inconsolata, monospace, sans-serif;font-size:0.85em;font-feature-settings:"liga" 0;-webkit-font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" 0}pre{overflow:auto;box-sizing:border-box;margin:0 0 1.75em 0;padding:10px;width:100%;border:#e3edf3 1px solid;background:#f7fafb;border-radius:3px;white-space:pre;font-family:Inconsolata, monospace, sans-serif;font-size:0.9em;-moz-box-sizing:border-box}pre code,pre tt{padding:0;border:none;background:transparent;white-space:pre-wrap;font-size:inherit}kbd{display:inline-block;margin-bottom:0.4em;padding:1px 8px;border:#ccc 1px solid;background:#f4f4f4;border-radius:4px;box-shadow:0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 0 #fff inset;color:#666;text-shadow:#fff 0 1px 0;font-size:0.9em;font-weight:700}table{box-sizing:border-box;margin:1.75em 0;max-width:100%;width:100%;background-color:transparent;-moz-box-sizing:border-box}table th,table td{padding:8px;border-top:#efefef 1px solid;vertical-align:top;text-align:left;line-height:20px}table th{color:#000}table caption + thead tr:first-child th,table caption + thead tr:first-child td,table colgroup + thead tr:first-child th,table colgroup + thead tr:first-child td,table thead:first-child tr:first-child th,table thead:first-child tr:first-child td{border-top:0}table tbody + tbody{border-top:#efefef 2px solid}table table table{background-color:#fff}table tbody > tr:nth-child(odd) > td,table tbody > tr:nth-child(odd) > th{background-color:#f6f6f6}table.plain tbody > tr:nth-child(odd) > td,table.plain tbody > tr:nth-child(odd) > th{background:transparent}iframe,amp-iframe,.fluid-width-video-wrapper{display:block;margin:1.75em 0}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper amp-iframe{margin:0}textarea,select,input{margin:0 0 5px 0;padding:6px 9px;width:260px;outline:0;border:#e7eef2 1px solid;background:#fff;border-radius:4px;box-shadow:none;font-family:"Open Sans", sans-serif;font-size:1.6rem;line-height:1.4em;font-weight:100;-webkit-appearance:none}textarea{min-width:250px;min-height:80px;max-width:340px;width:100%;height:auto}input[type="text"]:focus,input[type="email"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="week"]:focus,input[type="time"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,textarea:focus{outline:none;outline-width:0;border:#bbc7cc 1px solid;background:#fff}select{width:270px;height:30px;line-height:30px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.clearfix{zoom:1}.main-header{position:relative;display:table;overflow:hidden;box-sizing:border-box;width:100%;height:50px;background:#5ba4e5 no-repeat center center;background-size:cover;text-align:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box}.content{background:#fff;padding-top:15px}.blog-title,.content{margin:auto;max-width:600px}.blog-title a{display:block;padding-right:16px;padding-left:16px;height:50px;color:#fff;text-decoration:none;font-family:"Open Sans", sans-serif;font-size:16px;line-height:50px;font-weight:600}.post{position:relative;margin-top:0;margin-right:16px;margin-left:16px;padding-bottom:0;max-width:100%;border-bottom:#ebf2f6 1px solid;word-wrap:break-word;font-size:0.95em;line-height:1.65em}.post-header{margin-bottom:1rem}.post-title{margin-bottom:0}.post-title a{text-decoration:none}.post-meta{display:block;margin:3px 0 0 0;color:#9eabb3;font-family:"Open Sans", sans-serif;font-size:1.3rem;line-height:2.2rem}.post-meta a{color:#9eabb3;text-decoration:none}.post-meta a:hover{text-decoration:underline}.post-meta .author{margin:0;font-size:1.3rem;line-height:1.3em}.post-date{display:inline-block;text-transform:uppercase;white-space:nowrap;font-size:1.2rem;line-height:1.2em}.post-image{margin:0;padding-top:3rem;padding-bottom:30px;border-top:1px #E8E8E8 solid}.post-content amp-img,.post-content amp-anim{position:relative;left:50%;display:block;padding:0;min-width:0;max-width:112%;width:calc(100% + 32px);height:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%)}.footnotes{font-size:1.3rem;line-height:1.6em;font-style:italic}.footnotes li{margin:0.6rem 0}.footnotes p{margin:0}.footnotes p a:last-child{text-decoration:none}.site-footer{position:relative;margin:0 auto 20px auto;padding:1rem 15px;max-width:600px;color:rgba(0,0,0,0.5);font-family:"Open Sans", sans-serif;font-size:1.1rem;line-height:1.75em}.site-footer a{color:rgba(0,0,0,0.5);text-decoration:none;font-weight:bold}.site-footer a:hover{border-bottom:#bbc7cc 1px solid}.poweredby{display:block;float:right;width:45%;text-align:right}.copyright{display:block;float:left;width:45%}</style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="main-header">
+        <nav class="blog-title">
+            <a href="../../">jeekdong's Blog</a>
+        </nav>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">JavaScript对象属性的遍历</h1>
+                <section class="post-meta">
+                    <p class="author">by <a href="../../author/jeekdong/">jeekdong</a></p>
+                    <time class="post-date" datetime="2017-03-18">2017-03-18</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="http://localhost:2368/content/images/2017/03/JavaScript.png" width="600" height="400" layout="responsive"></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <div class="kg-card-markdown"><p>最近在学习数据结构与算法，遇到了遍历对象属性的需求，查找了一些资料发现JavaScript中提供的几个遍历方法各有不同，陷阱也不少。</p>
+<h2 id="0x00">0x00</h2>
+<p>在认识JavaScript中对象属性的遍历方法前，我们先复习一下JavaScript中的基础知识。</p>
+<ul>
+<li>JavaScript中对象的属性分为两种：<strong>数据属性</strong>和<strong>访问器属性</strong>。
+<ul>
+<li>每一种属性内部都有一些特性，这里我们只关注对象属性的[[Enumerable]]特征，它表示是否通过 for-in 循环返回属性，也可以理解为：是否可枚举。</li>
+</ul>
+</li>
+<li>根据具体的上下文环境的不同，又可以将属性分为：<strong>原型属性</strong>和<strong>实例属性</strong>。
+<ul>
+<li>原型属性是定义在对象的原型（prototype）中的属性</li>
+<li>实例属性可能来自构造函数中，或是构造函数实例化后添加的新属性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="0x01">0x01</h2>
+<p>在JavaScript中,遍历一个对象的属性往往没有那么简单，主要有两个方面的原因:<strong>第一</strong>JavaScript中的对象通常都处在某个原型链中,它会从一个或多个的上层原型上继承一些属性.<strong>第二</strong>是,JavaScript中的属性不光有值,它还有一些除了值以外的其他特性,其中一个影响属性遍历的特性就是[[Enumerable]],如果该值为true,则称这个属性是可枚举的,否则反之.</p>
+<p>具体来说，JavaScript中提供了四种方法来遍历属性：</p>
+<ul>
+<li>for ... in</li>
+<li>Object.keys()</li>
+<li>Object.getOwnPropertyNames()</li>
+<li>for ... of</li>
+</ul>
+<hr>
+<h2 id="0x02">0x02</h2>
+<br>
+######*for ... in*
+&gt;*for...in*循环只遍历可枚举属性。像 Array 和 Object 使用内置构造函数所创建的对象都会继承自 Object.prototype 和 String.prototype 的不可枚举属性，例如 String 的 indexOf()  方法或者 Object 的 toString 方法。循环将迭代对象的所有可枚举属性和从它的构造函数的 prototype 继承而来的（包括被覆盖的内建属性）。
+<p>需要<strong>注意</strong>的是，使用<em>for...in</em>循环遍历对象属性时返回的属性会因为各个浏览器不同导致对象属性遍历的顺序有可能不是当初构建时的顺序。<br>
+当迭代那些访问次序重要的 arrays 时用整数索引去进行 for 循环 (或者使用 Array.prototype.forEach() 或 for...of 循环)。</p>
+<p><em>以下是一个对象遍历的例子</em></p>
+<pre><code class="language-javascript">
+var person={}
+person.name = "张三";
+person.sex = "男";
+person.say = function(){
+        return "嗨！大家好，我来了。";
+    }
+person.contact = {
+    tel : "029-81895644",
+    qq : "1370753465",
+    email : "itxueyuan@gmail.com"
+}
+var strTem="";  // 临时变量
+for(value in person){
+   strTem+=value+'：'+person[value]+"\n";
+}
+alert(strTem);
+</code></pre>
+<p id="demo232ere">点击这里遍历person对象</p>
+
+<h6 id="objectkeys"><em>Object.keys()</em></h6>
+<p><em>Object.keys()<em>用于获取对象自身所有的可枚举的属性值，但不包括原型中的属性，然后返回一个由属性名组成的数组。<strong>注意</strong>它同</em>for..in</em>一样不能保证属性按对象原来的顺序输出。</p>
+<p><em>Object.keys()<em>与</em>for...in</em>最大的<strong>区别</strong>在于<em>for...in</em>还会遍历出一个对象从其原型链上继承到的可枚举属性。</p>
+<pre><code class="language-javascript">// 遍历数组
+var colors = ['red', 'green', 'blue'];
+colors.length = 10;
+colors.push('yellow');
+Array.prototype.demo = function () {};
+
+Object.keys(colors); // 0 1 2 10
+
+// 遍历对象
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.demo = function() {};
+
+var jenemy = new Person('jenemy', 25);
+
+Object.keys(jenemy); // name age
+</code></pre>
+<br>
+######*Object.getOwnPropertyNames()*
+&gt;*Object.getOwnPropertyNames* 返回一个数组，该数组对元素是 obj 自身拥有的枚举或不可枚举属性名称字符串。 数组中枚举属性的顺序与通过 for...in 循环（或 Object.keys）迭代该对象属性时一致。 数组中不可枚举属性的顺序未定义。
+<p>*Object.getOwnPropertyNames()*方法返回对象的所有自身属性的属性名（包括不可枚举的属性）组成的数组，但不会获取原型链上的属性。</p>
+<pre><code class="language-javascript">var arr = ["a", "b", "c"];
+console.log(Object.getOwnPropertyNames(arr).sort()); // ["0", "1", "2", "length"]
+
+// 类数组对象
+var obj = { 0: "a", 1: "b", 2: "c"};
+console.log(Object.getOwnPropertyNames(obj).sort()); // ["0", "1", "2"]
+
+// 使用Array.forEach输出属性名和属性值
+Object.getOwnPropertyNames(obj).forEach(function(val, idx, array) {
+  console.log(val + " -&gt; " + obj[val]);
+});
+// 输出
+// 0 -&gt; a
+// 1 -&gt; b
+// 2 -&gt; c
+
+//不可枚举属性
+var my_obj = Object.create({}, {
+  getFoo: {
+    value: function() { return this.foo; },
+    enumerable: false
+  }
+});
+my_obj.foo = 1;
+
+console.log(Object.getOwnPropertyNames(my_obj).sort()); // ["foo", "getFoo"]
+</code></pre>
+<br>
+######*for ... of*
+*for..of*为ES6新增的方法，主要来遍历可迭代的对象（包括Array, Map, Set, arguments等），它主要用来获取对象的属性值，而for..in主要获取对象的属性名。
+<pre><code class="language-javascript">var colors = ['red', 'green', 'blue'];
+colors.length = 5;
+colors.push('yellow');
+<p>for (var i in colors) {<br>
+console.log(colors[i]); // red green blue yellow<br>
+}</p>
+<h2 id="forvarjofcolorsconsolelogjredgreenblueundefinedundefinedyellowcodepreforofforofarrayprototypeforeach">for (var j of colors) {<br>
+console.log(j); // red green blue undefined undefined yellow<br>
+}<br>
+</h2></code></pre><br>
+可以看到使用for..of可以输出包括数组中不存在的值在内的所有值。<br>
+其实除了使用for..of直接获取属性值外，我们也可以利用Array.prototype.forEach()来达到同样的目的。
+<h2 id="0x03">0x03</h2>
+<p>这四个方法的差异总结如下：</p>
+<table border="1">
+<thead>
+<tr class="header">
+<th align="center">方法</th>
+<th align="left">适用范围</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">for..in</td>
+<td align="left">数组，对象</td>
+<td>获取可枚举的实例和原型属性名</td>
+</tr>
+<tr class="even">
+<td align="center">Object.keys()</td>
+<td align="left">数组，对象</td>
+<td>返回可枚举的实例属性名组成的数组</td>
+</tr>
+<tr class="odd">
+<td align="center">Object.getOwnPropertyNames()</td>
+<td align="left">数组，对象</td>
+<td>返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组</td>
+</tr>
+<tr class="even">
+<td align="center">for..of</td>
+<td align="left">可迭代对象(Array, Map, Set, arguments等)</td>
+<td>返回属性值</td>
+</tr>
+</tbody>
+</table>
+<p><br><br><br><br></p>
+<h6 id>参考链接</h6>
+<ol>
+<li><a href="http://www.cnblogs.com/wujie520303/p/4931384.html">JavaScript中in操作符(for..in)、Object.keys()和Object.getOwnPropertyNames()的区别</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames()</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">for...in</a></li>
+</ol>
+</div>
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="../../">jeekdong's Blog</a> © 2018</section>
+        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+    </footer>
+</body>
