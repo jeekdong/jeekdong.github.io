@@ -8,7 +8,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=bb2cc0bddc">
+    <link rel="stylesheet" type="text/css" href="https://jeekdong.github.io/assets/built/screen.css?v=0e359daa50">
 
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="canonical" href="index.html">
@@ -19,8 +19,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="《你不知道的JavaScript》读书笔记（七）----异步：现在与未来">
     <meta property="og:description" content='异步控制台：在某些浏览器的console.log(...)并不会把传入的内容立即输出（因为，I/O是非常低速的阻塞） 事件循环：在ES6以前JS引擎并没有内建直接的异步概念，而是通过事件循环   // `事件循环` 是一个用作队列的数组   var eventLoop = [ ];   var event;   // 永远执行   while (true) {   	// 一次"tick"   	if (eventLoop.length &gt; 0) {   		// 得到下一个队列的事件   		event = eventLoop.shift();   		// 现在，执行下一个事件   		try {   			event();   		}   		catch (err) {   			reportError(err);   		}   	}   } 有一个while循环是现代持续运行的循环，循环的每一轮成为一个tick，对每个tick而言，如果在队列中有事件，那么就会从队列中得到一个事件并执行。这些事件就是回调函数。 并行线程：运行中会出现中断和交错运行 完整运行：由于JavaScript是单线程的，一旦foo()开始运行，他的所有代码都会在bar('>
-    <meta property="og:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/">
-    <meta property="og:image" content="/content/images/2017/07/You-Dont-Know-JS-2-2.jpg">
+    <meta property="og:url" content="https://jeekdong.github.io/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/">
+    <meta property="og:image" content="https://jeekdong.github.io/content/images/2017/07/You-Dont-Know-JS-2-2.jpg">
     <meta property="article:published_time" content="2017-07-17T15:02:38.000Z">
     <meta property="article:modified_time" content="2017-07-17T15:06:21.000Z">
     <meta property="article:tag" content="JavaScript">
@@ -30,8 +30,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="《你不知道的JavaScript》读书笔记（七）----异步：现在与未来">
     <meta name="twitter:description" content='异步控制台：在某些浏览器的console.log(...)并不会把传入的内容立即输出（因为，I/O是非常低速的阻塞） 事件循环：在ES6以前JS引擎并没有内建直接的异步概念，而是通过事件循环   // `事件循环` 是一个用作队列的数组   var eventLoop = [ ];   var event;   // 永远执行   while (true) {   	// 一次"tick"   	if (eventLoop.length &gt; 0) {   		// 得到下一个队列的事件   		event = eventLoop.shift();   		// 现在，执行下一个事件   		try {   			event();   		}   		catch (err) {   			reportError(err);   		}   	}   } 有一个while循环是现代持续运行的循环，循环的每一轮成为一个tick，对每个tick而言，如果在队列中有事件，那么就会从队列中得到一个事件并执行。这些事件就是回调函数。 并行线程：运行中会出现中断和交错运行 完整运行：由于JavaScript是单线程的，一旦foo()开始运行，他的所有代码都会在bar('>
-    <meta name="twitter:url" content="/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/">
-    <meta name="twitter:image" content="/content/images/2017/07/You-Dont-Know-JS-2-2.jpg">
+    <meta name="twitter:url" content="https://jeekdong.github.io/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/">
+    <meta name="twitter:image" content="https://jeekdong.github.io/content/images/2017/07/You-Dont-Know-JS-2-2.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="jeekdong">
     <meta name="twitter:label2" content="Filed under">
@@ -46,7 +46,7 @@
         "name": "jeekdong&#x27;s Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "/favicon.ico",
+            "url": "https://jeekdong.github.io/favicon.ico",
             "width": 60,
             "height": 60
         }
@@ -54,28 +54,28 @@
     "author": {
         "@type": "Person",
         "name": "jeekdong",
-        "url": "/author/jeekdong/",
+        "url": "https://jeekdong.github.io/author/jeekdong/",
         "sameAs": []
     },
     "headline": "《你不知道的JavaScript》读书笔记（七）----异步：现在与未来",
-    "url": "/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/",
+    "url": "https://jeekdong.github.io/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/",
     "datePublished": "2017-07-17T15:02:38.000Z",
     "dateModified": "2017-07-17T15:06:21.000Z",
-    "image": "/content/images/2017/07/You-Dont-Know-JS-2-2.jpg",
+    "image": "https://jeekdong.github.io/content/images/2017/07/You-Dont-Know-JS-2-2.jpg",
     "keywords": "JavaScript, 读书笔记, You-Dont-Know-JS",
     "description": "异步控制台：在某些浏览器的console.log(...)并不会把传入的内容立即输出（因为，I/O是非常低速的阻塞） 事件循环：在ES6以前JS引擎并没有内建直接的异步概念，而是通过事件循环   // &#x60;事件循环&#x60; 是一个用作队列的数组   var eventLoop &#x3D; [ ];   var event;   // 永远执行   while (true) {   \t// 一次&quot;tick&quot;   \tif (eventLoop.length &gt; 0) {   \t\t// 得到下一个队列的事件   \t\tevent &#x3D; eventLoop.shift();   \t\t// 现在，执行下一个事件   \t\ttry {   \t\t\tevent();   \t\t}   \t\tcatch (err) {   \t\t\treportError(err);   \t\t}   \t}   } 有一个while循环是现代持续运行的循环，循环的每一轮成为一个tick，对每个tick而言，如果在队列中有事件，那么就会从队列中得到一个事件并执行。这些事件就是回调函数。 并行线程：运行中会出现中断和交错运行 完整运行：由于JavaScript是单线程的，一旦foo()开始运行，他的所有代码都会在bar(",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/"
+        "@id": "https://jeekdong.github.io/"
     }
 }
     </script>
 
-    <script src="/public/ghost-sdk.js?v=bb2cc0bddc"></script>
+    <script src="https://jeekdong.github.io/public/ghost-sdk.js?v=0e359daa50"></script>
 <script>
 ghost.init({
 	clientId: "ghost-frontend",
-	clientSecret: "db19c8130b97"
+	clientSecret: "0e7ae0b20bce"
 });
 </script>
     <meta name="generator" content="Ghost 1.25">
@@ -106,7 +106,7 @@ ghost.init({
     <div class="site-nav-right">
         <div class="social-links">
         </div>
-            <a class="rss-button" href="https://feedly.com/i/subscription/feed//rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://jeekdong.github.io/rss/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
 </a>
     </div>
 </nav>
@@ -356,10 +356,10 @@ ghost.init({
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89----%E5%BC%82%E6%AD%A5%EF%BC%9A%E7%8E%B0%E5%9C%A8%E4%B8%8E%E6%9C%AA%E6%9D%A5&amp;url=/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=%E3%80%8A%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89----%E5%BC%82%E6%AD%A5%EF%BC%9A%E7%8E%B0%E5%9C%A8%E4%B8%8E%E6%9C%AA%E6%9D%A5&amp;url=https://jeekdong.github.io/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://jeekdong.github.io/ni-bu-zhi-dao-de-javascript-du-shu-bi-ji-qi-yi-bu-xian-zai-yu-wei-lai/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
         </a>
     </div>
@@ -390,7 +390,7 @@ ghost.init({
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js?v=bb2cc0bddc"></script>
+    <script type="text/javascript" src="https://jeekdong.github.io/assets/js/jquery.fitvids.js?v=0e359daa50"></script>
 
 
     <script>
