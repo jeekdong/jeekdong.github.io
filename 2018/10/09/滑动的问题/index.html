@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jeekdong&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="背景前面在写一个移动端的页面，竖屏轮播的效果，上滑下滑可以上翻下翻 但是在微信的内置浏览器遇到了一个问题，微信内置浏览器你在页面下滑会显示“该网页有XXX提供”，这与我们网页的下滑操作冲突，直接导致在网页下滑根本无法向上翻页。其实在chrome手机浏览器也有类似的小问题，下滑会有一定几率被浏览器当做刷新的行为。 分析&amp;amp;&amp;amp;解决既然了解了问题的表现，就可以简单分析问题的原因，下滑首先就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信内置浏览器&#39;滑动&#39;的问题">
+<meta property="og:url" content="http://yoursite.com/2018/10/09/滑动的问题/index.html">
 <meta property="og:site_name" content="Jeekdong&#39;s Blog">
+<meta property="og:description" content="背景前面在写一个移动端的页面，竖屏轮播的效果，上滑下滑可以上翻下翻 但是在微信的内置浏览器遇到了一个问题，微信内置浏览器你在页面下滑会显示“该网页有XXX提供”，这与我们网页的下滑操作冲突，直接导致在网页下滑根本无法向上翻页。其实在chrome手机浏览器也有类似的小问题，下滑会有一定几率被浏览器当做刷新的行为。 分析&amp;amp;&amp;amp;解决既然了解了问题的表现，就可以简单分析问题的原因，下滑首先就">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:updated_time" content="2018-10-10T13:45:24.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jeekdong&#39;s Blog">
+<meta name="twitter:title" content="微信内置浏览器&#39;滑动&#39;的问题">
+<meta name="twitter:description" content="背景前面在写一个移动端的页面，竖屏轮播的效果，上滑下滑可以上翻下翻 但是在微信的内置浏览器遇到了一个问题，微信内置浏览器你在页面下滑会显示“该网页有XXX提供”，这与我们网页的下滑操作冲突，直接导致在网页下滑根本无法向上翻页。其实在chrome手机浏览器也有类似的小问题，下滑会有一定几率被浏览器当做刷新的行为。 分析&amp;amp;&amp;amp;解决既然了解了问题的表现，就可以简单分析问题的原因，下滑首先就">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/09/滑动的问题/"/>
 
 
 
 
 
-  <title>Jeekdong's Blog</title>
+  <title>微信内置浏览器'滑动'的问题 | Jeekdong's Blog</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/09/滑动的问题/" itemprop="url">微信内置浏览器'滑动'的问题</a></h1>
+          <h1 class="post-title" itemprop="name headline">微信内置浏览器'滑动'的问题</h1>
         
 
         <div class="post-meta">
@@ -298,9 +299,7 @@
       
 
       
-        
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前面在写一个移动端的页面，竖屏轮播的效果，上滑下滑可以上翻下翻</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前面在写一个移动端的页面，竖屏轮播的效果，上滑下滑可以上翻下翻</p>
 <p>但是在微信的内置浏览器遇到了一个问题，微信内置浏览器你在页面下滑会显示“该网页有XXX提供”，这与我们网页的下滑操作冲突，直接导致在网页下滑根本无法向上翻页。其实在chrome手机浏览器也有类似的小问题，下滑会有一定几率被浏览器当做刷新的行为。</p>
 <h2 id="分析-amp-amp-解决"><a href="#分析-amp-amp-解决" class="headerlink" title="分析&amp;&amp;解决"></a>分析&amp;&amp;解决</h2><p>既然了解了问题的表现，就可以简单分析问题的原因，下滑首先就是联想到就是<code>touch</code>事件，当我们touch屏幕下滑发生了浏览器的默认行为，于是我们在文档元素中直接禁用掉<code>touchstart</code>事件的默认行为，如下，需要注意的是<code>addEventListener</code>的第三个参数必须是指定<code>{passive: false}</code>，否则是无法去除touch事件的默认行为，具体原因我们放在最后面讲。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'body'</span>).addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;, &#123;<span class="attr">passive</span>: <span class="literal">false</span>&#125;)</span><br></pre></td></tr></table></figure>
@@ -333,8 +332,6 @@
 <li><a href="https://www.chromestatus.com/features/5093566007214080" target="_blank" rel="noopener">Chrome Platform Status</a></li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -351,146 +348,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/22/Init/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeekdong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://easyread.nosdn.127.net/web/trunk/1537626648769/v.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jeekdong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/22/Init/" itemprop="url">Init</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-22T20:53:23+08:00">
-                2018-09-22
-              </time>
+              <a href="/2018/09/22/Init/" rel="next" title="Init">
+                <i class="fa fa-chevron-left"></i> Init
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>新博客的第一篇文章，原来的博客是用的腾讯云学生主机+Ghost搭的。</p>
-<p>现在优惠到期之后就把博客迁到Github pages，原本盘算着还是用Ghost搭起来，顺便把原来的文章备份过来</p>
-<p>可是使用Buster生成Ghost静态文件的资源索引都是localhost，每次push前都要替换，虽然可以写个脚本批量修改，但更奇怪的是打包的文件是没有css/js文件的，还要从themes手动复制过去，折腾了几天还是解决不了，索性就换成现在的Hexo。</p>
-<h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><p>为什么想着写博客文章呢。</p>
-<p>很简单：记性不好，经常以前看过的一些东西到用的时候就忘的差不多了(oﾟ▽ﾟ)o  </p>
-<p>其次学习一个技能，光看是远远不够的，写下来也算是检验学习的成果</p>
-<p>同时写文章也能加强文字和表达的能力</p>
-<h2 id="写什么"><a href="#写什么" class="headerlink" title="写什么"></a>写什么</h2><p>我的期望是每周能写一篇文章，对于一些深入的可以几周完成，</p>
-<p>内容一般是</p>
-<ul>
-<li>实际业务中遇到的一些问题</li>
-<li>一些新技术的应用</li>
-<li>平时读书/时事的一些想法</li>
-<li>摄影的皂片</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -500,10 +379,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -511,6 +391,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -531,8 +415,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -578,6 +471,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析-amp-amp-解决"><span class="nav-number">2.</span> <span class="nav-text">分析&amp;&amp;解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passive"><span class="nav-number">3.</span> <span class="nav-text">passive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -718,6 +627,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
